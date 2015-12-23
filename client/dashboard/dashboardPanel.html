@@ -1,0 +1,37 @@
+<template name="dashboardPanel">
+
+    <div class="container">
+        <div style="height: 50px">
+            <a class="button button-dark pull-right" href="signOut">Sign Out</a>
+        </div>
+
+        <div class="list">
+            {{> messages }}
+        </div>
+
+        <div class="bar bar-footer">
+            <div class="button-bar">
+                <label class="item item-input">
+                    <input id="message" type="text" placeholder="Message">
+                </label>
+                <button class="button  button-positive pull-right">Right</button>
+            </div>
+        </div>
+
+    </div>
+</template>
+
+
+<template name="messages">
+    {{#each messages}}
+
+        <a class="item item-avatar" href="#">
+            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/sauro/48.jpg">
+
+            <h2>Tisch:  {{table}} - <strong> {{name}} </strong>- </h2>
+
+            <p>{{message}}</p>
+        </a>
+    {{/each}}
+</template>
+

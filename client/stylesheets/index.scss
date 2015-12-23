@@ -1,0 +1,9 @@
+@import '.meteor/local/build/programs/server/assets/packages/meteoric_ionic-sass/ionic';
+@import '.meteor/local/build/programs/server/assets/packages/meteoric_ionicons-sass/ionicons';
+
+.bar-footer {
+  label.item-input {
+    width: 80%;
+    margin-right: 5px;
+  }
+}

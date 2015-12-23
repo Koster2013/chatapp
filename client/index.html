@@ -1,0 +1,22 @@
+<head>
+    <title>chatapp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<template name="mainContent">
+    {{#ionBody}}
+        {{#ionContent}}
+
+
+            <div class="bar bar-header bar-stable">
+                <h1 class="title">chatapp</h1>
+            </div>
+
+        <div style="padding-top: 40px;">
+            {{> yield "content"}}
+        </div>
+
+
+        {{/ionContent}}
+    {{/ionBody}}
+</template>
