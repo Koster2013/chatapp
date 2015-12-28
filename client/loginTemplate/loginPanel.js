@@ -23,6 +23,7 @@ Template.loginPanel.events({
                             alert(err.toString());
                         }
                         else {
+                            Meteor.user().profile.online = true;
                             console.log("User eingeloggt");
                         }
                     });

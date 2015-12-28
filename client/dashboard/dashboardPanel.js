@@ -11,7 +11,7 @@ Template.dashboardPanel.events({
             var message = document.getElementById('message');
             if (message.value != '') {
                 Messages.insert({
-                    name: name,
+                    name: Meteor.user().emails[0].address,
                     message: message.value,
                     time: Date.now()
                 });
@@ -37,8 +37,12 @@ Template.messages.helpers({
 
     name: function () {
         return Meteor.user().emails[0].address;
-    }
+    },
 
+    online: function () {
+        var user = Meteor.users.findOne( { _id: Meteor.userId() } );
+        return user.profile.online;
+    }
 
 });
 

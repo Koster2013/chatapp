@@ -1,7 +1,4 @@
-Messages = new Meteor.Collection('messages');
-
 if (Meteor.isServer) {
-
 
     Meteor.startup(function () {
 
@@ -15,9 +12,11 @@ if (Meteor.isServer) {
                 password: obj.password,
                 profile: {
                     role: "user",
-                    table: obj.table
+                    table: obj.table,
+                    online: true
                 }
             });
         }
     });
+
 }
