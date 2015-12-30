@@ -4,19 +4,7 @@
 </head>
 
 <template name="mainContent">
-    {{#ionBody}}
-        {{#ionContent}}
-
-
-            <div class="bar bar-header bar-stable">
-                <h1 class="title">chatapp</h1>
+            <div style="padding-top: 40px;">
+                {{> yield "content"}}
             </div>
-
-        <div style="padding-top: 40px;">
-            {{> yield "content"}}
-        </div>
-
-
-        {{/ionContent}}
-    {{/ionBody}}
 </template>

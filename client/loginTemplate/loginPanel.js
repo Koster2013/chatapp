@@ -6,19 +6,19 @@ Template.loginPanel.events({
 
     'submit #createForm': function (e) {
 
-        var email = e.target.email.value;
+        var username = e.target.username.value;
         var password = e.target.password.value;
         var table = e.target.table.value;
 
-        var user_email = Meteor.users.find({email: email});
-        if (user_email.count() == 0) {
+        var user_name = Meteor.users.find({username: username});
+        if (user_name.count() == 0) {
             Meteor.call('createAppUser', {
                 password: password,
-                email: email,
+                username: username,
                 table: table
             }, function (err) {
                 if (!err) {
-                    Meteor.loginWithPassword(email, password,table, function (err) {
+                    Meteor.loginWithPassword(username, password,table, function (err) {
                         if (err) {
                             alert(err.toString());
                         }

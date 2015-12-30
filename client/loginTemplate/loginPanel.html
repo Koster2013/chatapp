@@ -1,12 +1,15 @@
 <template name="loginPanel">
+
+    {{#ionBody}}
+        {{#ionContent}}
     <div class="card">
         <div class="item item-text-wrap">
             <form id="createForm" class="form-signin">
 
                 <div class="list">
                     <label class="item item-input">
-                        <span  class="input-label">E-Mail</span>
-                        <input name="email" type="email">
+                        <span  class="input-label">Username</span>
+                        <input name="username" type="text">
                     </label>
                     <label class="item item-input">
                         <span class="input-label">Password</span>
@@ -24,6 +27,9 @@
             </form>
         </div>
     </div>
+
+        {{/ionContent}}
+    {{/ionBody}}
 
 
 </template>

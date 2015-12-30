@@ -1,6 +1,6 @@
 // beim ersten ausführen auskommentieren und nach dem bauen des ionic packages wieder einbinden.
-//@import '.meteor/local/build/programs/server/assets/packages/meteoric_ionic-sass/ionic';
-//@import '.meteor/local/build/programs/server/assets/packages/meteoric_ionicons-sass/ionicons';
+@import '.meteor/local/build/programs/server/assets/packages/meteoric_ionic-sass/ionic';
+@import '.meteor/local/build/programs/server/assets/packages/meteoric_ionicons-sass/ionicons';
 
 .bar-footer {
   label.item-input {
