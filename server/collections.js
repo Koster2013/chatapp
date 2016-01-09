@@ -1,4 +1,4 @@
-/*Rooms.deny({
+Rooms.deny({
     insert: function (userId, doc) {
         return true;
     },
@@ -26,6 +26,43 @@ Messages.allow({
     }
 });
 
+Images.deny({
+    insert: function(){
+        return false;
+    },
+    update: function(){
+        return false;
+    },
+    remove: function(){
+        return false;
+    },
+    download: function(){
+        return false;
+    }
+});
+
+Images.allow({
+    insert: function(){
+        return true;
+    },
+    update: function(){
+        return true;
+    },
+    remove: function(){
+        return true;
+    },
+    download: function(){
+        return true;
+    }
+});
+
+Meteor.users.allow({
+    remove: function (userId, doc) {
+        return true;
+    }
+});
+
+Meteor.publish("images", function(){ return Images.find(); });
 
 
 Meteor.publish("rooms", function () {
@@ -34,12 +71,26 @@ Meteor.publish("rooms", function () {
 Meteor.publish("messages", function () {
     return Messages.find({}, {sort: {ts: -1}});
 });
- */
 
 
 Meteor.methods({
-    'getUsers': function(){
-        console.log("call1");
-        return Meteor.users.find({ }).fetch();
+    'getUsers': function( users ){
+        if ( users == undefined) {
+            console.log("jo ich bim mainroom")
+            return Meteor.users.find({  }).fetch()
+        }else {
+            console.log("hier net")
+            return Meteor.users.find({ "$and": users }).fetch()
+        }
     }
 });
+
+Meteor.methods({
+    "createRoom": function ( users ) {
+        var roomname = new Meteor.Collection.ObjectID().valueOf();
+        Rooms.insert({roomname: roomname});
+        Meteor.users.update(users[0].userid, { $push: {"profile.rooms": { roomname: roomname }}});
+        Meteor.users.update(users[1].userid, { $push: {"profile.rooms": { roomname: roomname }}})
+        return roomname;
+    }
+})

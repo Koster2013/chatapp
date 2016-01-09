@@ -43,3 +43,6 @@ meteoric:ionic
 http
 autopublish
 reactive-var
+houston:admin
+cfs:standard-packages
+cfs:gridfs

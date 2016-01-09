@@ -12,13 +12,13 @@ Template.loginPanel.events({
 
         var user_name = Meteor.users.find({username: username});
         if (user_name.count() == 0) {
-            Meteor.call('createAppUser', {
+           Meteor.call('createAppUser', {
                 password: password,
                 username: username,
                 table: table
-            }, function (err) {
-                if (!err) {
-                    Meteor.loginWithPassword(username, password,table, function (err) {
+            }, function (err, result) {
+                if (result != undefined) {
+                    Meteor.loginWithPassword(result, password,table, function (err) {
                         if (err) {
                             alert(err.toString());
                         }
@@ -29,9 +29,10 @@ Template.loginPanel.events({
                     });
                 }
                 else {
-                    alert(err.toString());
+                    console.log(err);
+                    console.log(result);
+                    alert("Ihr Benutzer konnte nicht angelegt werden");
                 }
-
             });
 
         }

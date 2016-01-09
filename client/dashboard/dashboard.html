@@ -8,7 +8,7 @@
 
             {{#ionSideMenu side="right"}}
                 <div class="bar bar-header bar-dark">
-                    <h1 class="title">Right Menu</h1>
+                    <h1 class="title">User</h1>
                 </div>
                 <div class="content has-header">
                     <div class="list">
@@ -26,6 +26,25 @@
                 </div>
 
             {{/ionSideMenu}}
+
+
+            {{#ionSideMenu side="left"}}
+                <div class="bar bar-header bar-dark">
+                    <h1 class="title">Rooms</h1>
+                </div>
+                <div class="content has-header">
+                    <div class="list">
+                        <a class="item item-icon-left" data-ion-menu-close>
+                            <i class="icon ion-arrow-left-b"></i>
+                            Close Me
+                        </a>
+                    </div>
+
+                    {{> rooms }}
+                </div>
+
+            {{/ionSideMenu}}
+
 
             {{#ionSideMenuContent}}
 
@@ -63,29 +82,52 @@
     <div class="list">
         {{#each messages}}
             <div class="item item-avatar" style={{thatsMe(user.username)}}>
-                <img src={{avatar}}>
-                <strong>{{user.username}} </strong>
+
+                {{#if Template.subscriptionsReady}}
+                    <img src={{avatarNew}}>
+                {{else}}
+                    Loading...
+                {{/if}}
+
+                <strong>{{getUsername(user)}} </strong>
 
                 - <small>{{timestamp}}</small> -
-                ( <small> Tisch: {{user.profile.table}}</small> )
+                ( <small> Tisch: {{getTable(user)}} </small> )
                 <p>{{msg}}</p>
             </div>
         {{/each}}
     </div>
 </template>
 
-
 <template name="users">
     <div class="list">
         {{#each users}}
-                <div class="item item-avatar" style={{status(profile.online)}}>
-                    <img src={{avatar}}>
-                    <strong>{{username}}</strong>
+            {{#if thatsMe }}
+                <div></div>
+            {{else}}
+                <div class="item item-avatar item-icon-right" style={{status(profile.online)}}>
+                    <img src={{avatarNew}}>
+                    <strong>{{profile.username}}</strong>
+                    <a id="createPrivateChat" href="#">
+                        <i class="icon ion-ios-telephone-outline"></i>
+                    </a>
                     <br>
                     ( <small> Tisch: {{profile.table}}</small> )
                 </div>
+            {{/if}}
         {{/each}}
     </div>
 </template>
 
 
+<template name="rooms">
+
+    <input type="file" name="" class="myFileInput"  >
+    <div class="list">
+        {{#each rooms}}
+            <a id="room" class="item">
+                {{roomname}}
+            </a>
+        {{/each}}
+    </div>
+</template>
