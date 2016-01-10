@@ -46,3 +46,5 @@ reactive-var
 houston:admin
 cfs:standard-packages
 cfs:gridfs
+chrismbeckett:toastr
+matb33:collection-hooks

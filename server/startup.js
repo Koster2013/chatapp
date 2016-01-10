@@ -27,5 +27,4 @@ if (Meteor.isServer) {
             return usernameId;
         }
     });
-
 }

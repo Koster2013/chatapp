@@ -54,7 +54,8 @@
                 </div>
 
 
-                <div style="padding-top: 40px;">
+                <div style="padding-top: 40px;" id="messages1" >
+
                     {{> messages}}
 
                 </div>
@@ -79,20 +80,17 @@
 
 
 <template name="messages">
-    <div class="list">
+    <div class="list" >
         {{#each messages}}
             <div class="item item-avatar" style={{thatsMe(user.username)}}>
-
-                {{#if Template.subscriptionsReady}}
-                    <img src={{avatarNew}}>
-                {{else}}
-                    Loading...
-                {{/if}}
-
+                <img src={{avatarNew(user)}} />
                 <strong>{{getUsername(user)}} </strong>
-
-                - <small>{{timestamp}}</small> -
-                ( <small> Tisch: {{getTable(user)}} </small> )
+                -
+                <small>{{timestamp}}</small>
+                -
+                (
+                <small> Tisch: {{getTable(user)}} </small>
+                )
                 <p>{{msg}}</p>
             </div>
         {{/each}}
@@ -112,7 +110,9 @@
                         <i class="icon ion-ios-telephone-outline"></i>
                     </a>
                     <br>
-                    ( <small> Tisch: {{profile.table}}</small> )
+                    (
+                    <small> Tisch: {{profile.table}}</small>
+                    )
                 </div>
             {{/if}}
         {{/each}}
@@ -122,7 +122,9 @@
 
 <template name="rooms">
 
-    <input type="file" name="" class="myFileInput"  >
+    <input type="file" name="" class="myFileInput">
+
+    <a href="/dashboard " >test</a>
     <div class="list">
         {{#each rooms}}
             <a id="room" class="item">

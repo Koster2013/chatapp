@@ -10,6 +10,11 @@ Template.dashboard.events({
 });
 
 
+Template.dashboard.lastUpdate = function () {
+    return Session.get('lastUpdate');
+};
+
+
 Template.messages.helpers({
     messages: function () {
         return Messages.find({room: Session.get("roomname")}, {sort: {ts: -1}});
@@ -26,9 +31,8 @@ Template.messages.helpers({
     avatar: function () {
         return getAvatarUrlMock(Meteor.userId());
     },
-    avatarNew: function () {
-
-        return Meteor.user().profile.image;
+    avatarNew: function (userid) {
+        return Meteor.users.findOne({_id: userid}).profile.image;
     },
     getUsername: function (userid) {
         return Meteor.users.findOne({_id: userid}).profile.username;
@@ -36,13 +40,6 @@ Template.messages.helpers({
     getTable: function (userid) {
         return Meteor.users.findOne({_id: userid}).profile.table;
     }
-});
-
-Template.messages.onCreated(function(){
-    // subscribe to the publication responsible for sending the Pushups
-    // documents down to the client
-    this.subscribe("Meteor.users");
-    this.subscribe("Accounts");
 });
 
 Template.users.helpers({
@@ -63,31 +60,46 @@ Template.users.helpers({
     }
 });
 
+
 Template.rooms.helpers({
     rooms: function () {
         return Rooms.find();
     }
 });
 
-Template.dashboard.events({
+
+Template.rooms.events({
     'click #room': function (e) {
         Session.set("roomname", this.roomname);
+        UI.insert(UI.render(Template.dashboard), document.body);
     },
     'change .myFileInput': function (event, template) {
         FS.Utility.eachFile(event, function (file) {
             Images.insert(file, function (err, fileObj) {
                 if (err) {
-                    // handle error
+                    toastr.error("Upload failed... please try again.");
                 } else {
-                    // handle success depending what you need to do
-                    var userId = Meteor.userId();
-                    var imagesURL = {
-                        "profile.image": Meteor.absoluteUrl() + "/cfs/files/images/" + fileObj._id
-                    };
-                    Meteor.users.update(userId, {$set: imagesURL});
+                    var intervalHandle = Meteor.setInterval(function () {
+                        console.log("Inside interval");
+                        if (fileObj.hasStored("images")) {
+                            // File has been uploaded and stored. Can safely display it on the page.
+                            var userId = Meteor.userId();
+                            var imagesURL = {
+                                "profile.image": Meteor.absoluteUrl() + "/cfs/files/images/" + fileObj._id
+                            };
+                            Meteor.users.update(userId, {$set: imagesURL});
+                            toastr.success('Upload succeeded!');
+                            Session.set('profilePhotoUploaded', true);
+                            // file has stored, close out interval
+                            Meteor.clearInterval(intervalHandle);
+                        }
+                    }, 1000);
                 }
             });
+
+
         });
+
     }
 });
 
@@ -104,8 +116,5 @@ Template.users.events({
 
 });
 
-Template.dashboard.rendered = function () {
-    //IonSideMenu.snapper.settings({disable: 'left'});
-};
 
 
