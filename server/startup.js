@@ -20,10 +20,11 @@ if (Meteor.isServer) {
                     table: obj.table,
                     online: true,
                     username: obj.username,
-                    rooms: [ mainroom
+                    rooms: [mainroom
                     ]
                 }
             });
+            Rooms.update(mainroom, { $push: {"users": { userid: userid }}})
             return usernameId;
         }
     });

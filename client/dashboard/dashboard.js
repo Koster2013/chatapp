@@ -1,19 +1,19 @@
 Template.dashboard.events({
     'click .sendMsg': function (e) {
-        _sendMessage();
+        var el = document.getElementById("msg");
+        Messages.insert({user: Meteor.userId(), msg: el.value, ts: new Date(), room: Session.get("roomname")});
+        el.value = "";
+        el.focus();
     },
     'keyup #msg': function (e) {
         if (e.type == "keyup" && e.which == 13) {
-            _sendMessage();
+            var el = document.getElementById("msg");
+            Messages.insert({user: Meteor.userId(), msg: el.value, ts: new Date(), room: Session.get("roomname")});
+            el.value = "";
+            el.focus();
         }
     }
 });
-
-
-Template.dashboard.lastUpdate = function () {
-    return Session.get('lastUpdate');
-};
-
 
 Template.messages.helpers({
     messages: function () {
@@ -25,20 +25,17 @@ Template.messages.helpers({
     timestamp: function () {
         return this.ts.toLocaleString();
     },
-    thatsMe: function (username) {
-        return _thatsMe(username) ? "background-color: mistyrose;" : "";
+    thatsMe: function () {
+        return _thatsMe(this.profile.username) ? "background-color: mistyrose;" : "";
     },
     avatar: function () {
-        return getAvatarUrlMock(Meteor.userId());
+        return Meteor.users.findOne({_id: this.user}).profile.image
     },
-    avatarNew: function (userid) {
-        return Meteor.users.findOne({_id: userid}).profile.image;
+    getUsername: function () {
+        return Meteor.users.findOne({_id: this.user}).profile.username;
     },
-    getUsername: function (userid) {
-        return Meteor.users.findOne({_id: userid}).profile.username;
-    },
-    getTable: function (userid) {
-        return Meteor.users.findOne({_id: userid}).profile.table;
+    getTable: function () {
+        return Meteor.users.findOne({_id: this.user}).profile.table
     }
 });
 
@@ -47,23 +44,33 @@ Template.users.helpers({
         return _thatsMe(this.profile.username);
     },
     users: function () {
-        return Meteor.users.find({"profile.rooms": Rooms.findOne({roomname: Session.get("roomname")})});
+        return Meteor.users.find({"profile.rooms.roomname": Rooms.findOne({roomname: Session.get("roomname")}).roomname});
     },
     avatar: function () {
-        return getAvatarUrlMock(Meteor.userId());
-    },
-    avatarNew: function () {
         return this.profile.image;
     },
-    status: function (status) {
-        return status == true ? "border-left: 10px solid limegreen;" : "border-left: 10px solid red;"
+    status: function () {
+        return this.profile.status == true ? "border-left: 10px solid limegreen;" : "border-left: 10px solid red;"
     }
+});
+
+Template.users.events({
+    'click #createPrivateChat': function (e) {
+        var users = [
+            {"userid": this._id},
+            {"userid": Meteor.userId()}
+        ]
+        Meteor.call("createRoom", users, function (error, result) {
+            Session.set("roomname", result);
+        });
+    }
+
 });
 
 
 Template.rooms.helpers({
     rooms: function () {
-        return Rooms.find();
+        return Rooms.find({"users.userid": Meteor.userId()});
     }
 });
 
@@ -71,7 +78,6 @@ Template.rooms.helpers({
 Template.rooms.events({
     'click #room': function (e) {
         Session.set("roomname", this.roomname);
-        UI.insert(UI.render(Template.dashboard), document.body);
     },
     'change .myFileInput': function (event, template) {
         FS.Utility.eachFile(event, function (file) {
@@ -89,7 +95,6 @@ Template.rooms.events({
                             };
                             Meteor.users.update(userId, {$set: imagesURL});
                             toastr.success('Upload succeeded!');
-                            Session.set('profilePhotoUploaded', true);
                             // file has stored, close out interval
                             Meteor.clearInterval(intervalHandle);
                         }
@@ -103,18 +108,6 @@ Template.rooms.events({
     }
 });
 
-Template.users.events({
-    'click #createPrivateChat': function (e) {
-        var users = [
-            {"userid": this._id},
-            {"userid": Meteor.userId()}
-        ]
-        Meteor.call("createRoom", users, function (error, result) {
-            Session.set("roomname", result);
-        });
-    }
-
-});
 
 
 
