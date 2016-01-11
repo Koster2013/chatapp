@@ -1,35 +1,31 @@
 <template name="loginPanel">
-
     {{#ionBody}}
         {{#ionContent}}
-    <div class="card">
-        <div class="item item-text-wrap">
-            <form id="createForm" class="form-signin">
+            <div class="card">
+                <div class="item item-text-wrap">
+                    <form id="createForm" class="form-signin">
 
-                <div class="list">
-                    <label class="item item-input">
-                        <span  class="input-label">Username</span>
-                        <input name="username" type="text">
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">Password</span>
-                        <input name="password" type="password">
-                    </label>
-                    <label class="item item-input">
-                        <span class="input-label">Tisch</span>
-                        <input name="table" type="number">
-                    </label>
-
-                    <div class="padding">
-                        <button type="submit"  class="button button-block button-positive activated">Sign In</button>
-                    </div>
+                        <div class="list">
+                            <label class="item item-input">
+                                <span class="input-label">Username</span>
+                                <input name="username" type="text">
+                            </label>
+                            <label class="item item-input">
+                                <span class="input-label">Password</span>
+                                <input name="password" type="password">
+                            </label>
+                            <label class="item item-input">
+                                <span class="input-label">Tisch</span>
+                                <input name="table" type="number">
+                            </label>
+                            <div class="padding">
+                                <button type="submit" class="button button-block button-positive activated">Sign In
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-    </div>
-
+            </div>
         {{/ionContent}}
     {{/ionBody}}
-
-
 </template>

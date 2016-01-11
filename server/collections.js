@@ -2,9 +2,6 @@ Rooms.deny({
     insert: function (userId, doc) {
         return true;
     },
-    update: function (userId, doc, fieldNames, modifier) {
-        return true;
-    },
     remove: function (userId, doc) {
         return true;
     }
@@ -12,12 +9,6 @@ Rooms.deny({
 Messages.deny({
     insert: function (userId, doc) {
         return (userId === null);
-    },
-    update: function (userId, doc, fieldNames, modifier) {
-        return true;
-    },
-    remove: function (userId, doc) {
-        return true;
     }
 });
 Messages.allow({
@@ -27,27 +18,22 @@ Messages.allow({
 });
 
 Images.allow({
-    insert: function(){
+    insert: function () {
         return true;
     },
-    update: function(){
+    update: function () {
         return true;
     },
-    remove: function(){
-        return true;
-    },
-    download: function(){
+    remove: function () {
         return true;
     }
 });
-
-Meteor.users.allow({
-    remove: function (userId, doc) {
-        return true;
-    }
+Meteor.publish("users", function () {
+    return Meteor.users.find({});
 });
-
-Meteor.publish("images", function(){ return Images.find(); });
+Meteor.publish("images", function () {
+    return Images.find();
+});
 
 Meteor.publish("rooms", function () {
     return Rooms.find();
@@ -57,22 +43,15 @@ Meteor.publish("messages", function () {
 });
 
 Meteor.methods({
-    'getUsers': function( users ){
-        if ( users == undefined) {
-            console.log("jo ich bim mainroom")
-            return Meteor.users.find({  }).fetch()
-        }else {
-            console.log("hier net")
-            return Meteor.users.find({ "$and": users }).fetch()
-        }
-    },
-    "createRoom": function ( users ) {
+    "createRoom": function (owner, guest) {
         var roomname = new Meteor.Collection.ObjectID().valueOf();
-        Rooms.insert({roomname: roomname, users: users});
-        Meteor.users.update(users[0].userid, { $push: {"profile.rooms": { roomname: roomname }}});
-        Meteor.users.update(users[1].userid, { $push: {"profile.rooms": { roomname: roomname }}})
+        Rooms.insert({roomname: roomname, users: [{username: owner.username},{username: guest.username}]});
+        Meteor.users.update(owner._id, {$push: {"profile.rooms": {roomname: roomname}}});
+        Meteor.users.update(guest._id, {$push: {"profile.rooms": {roomname: roomname}}})
         return roomname;
+    },
+    "removeUser": function (userid) {
+        Meteor.users.remove( { _id: userid });
     }
-
 });
 

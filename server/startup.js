@@ -1,31 +1,31 @@
 if (Meteor.isServer) {
 
     Meteor.startup(function () {
-        Messages.remove({});
-        Rooms.remove({});
-        Rooms.insert({roomname: "mainroom"});
+        if (Rooms.findOne({roomname: "mainroom"}) == undefined){
+            Rooms.insert({roomname: "mainroom"});
+        } else {
+
+        }
+        //Messages.remove({});
+        //Rooms.remove({});
+        //Rooms.insert({roomname: "mainroom"});
     });
 
 
     Meteor.methods({
         createAppUser: function (obj) {
-
-            var mainroom = Rooms.findOne({roomname: "mainroom"});
-            var usernameId = new Meteor.Collection.ObjectID().valueOf();
-            var userid = Accounts.createUser({
-                username: usernameId,
+            Rooms.update({roomname: "mainroom"}, { $push: {"users": { username: obj.username }}});
+            Accounts.createUser({
+                username: obj.username,
                 password: obj.password,
                 profile: {
                     role: "user",
                     table: obj.table,
                     online: true,
-                    username: obj.username,
-                    rooms: [mainroom
-                    ]
+                    profilename: obj.profileUsername,
+                    rooms: [{roomname: "mainroom"}]
                 }
             });
-            Rooms.update(mainroom, { $push: {"users": { userid: userid }}})
-            return usernameId;
         }
     });
 }

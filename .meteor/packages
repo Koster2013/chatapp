@@ -41,10 +41,8 @@ meteoric:ionic
 
 
 http
-autopublish
-reactive-var
-houston:admin
+#houston:admin
 cfs:standard-packages
 cfs:gridfs
 chrismbeckett:toastr
-matb33:collection-hooks
+miro:devtools

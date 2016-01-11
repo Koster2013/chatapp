@@ -29,6 +29,10 @@
                             <i class="icon ion-arrow-left-b"></i>
                             Close Me
                         </a>
+
+                        <div class="upload">
+                            <input type="file" id="myFileInput" name="upload"/>
+                        </div>
                     </div>
                     {{> rooms }}
                 </div>
@@ -38,14 +42,14 @@
                     <h1 class="title">chat app</h1>
                     <button class="button icon ion-navicon" data-ion-menu-toggle="right"></button>
                 </div>
-                <div style="padding-top: 40px;" id="messages1" >
+                <div style="padding-top: 40px;" id="messages1">
                     {{> messages}}
                 </div>
                 <div class="bar bar-footer  bar-positive">
                     <label class="item item-input">
                         <input type="text" id="msg" placeholder="Message">
                     </label>
-                    <button class="button button sendMsg" style="width: 50%;">Send</button>
+                    <button class="button button" id="sendMsg" style="width: 50%;">Send</button>
                 </div>
             {{/ionSideMenuContent}}
         {{/ionSideMenuContainer}}
@@ -54,21 +58,22 @@
 
 
 <template name="messages">
-    <div class="list" >
+    <ul class="commentArea">
         {{#each messages}}
-            <div class="item item-avatar" style={{thatsMe}}>
-                <img src={{avatar}} />
-                <strong>{{getUsername}} </strong>
-                -
-                <small>{{timestamp}}</small>
-                -
-                (
-                <small> Tisch: {{getTable}} </small>
-                )
-                <p>{{msg}}</p>
+            <div>
+                <li class={{thatsMe}}>
+                    <strong>{{username}} </strong>
+                    -
+                    <small>{{timestamp}}</small>
+                    -
+                    (
+                    <small> Tisch: {{table}} </small>
+                    )
+                    <p>{{msg}}</p>
+                </li>
             </div>
         {{/each}}
-    </div>
+    </ul>
 </template>
 
 <template name="users">
@@ -79,7 +84,7 @@
             {{else}}
                 <div class="item item-avatar item-icon-right" style={{status}}>
                     <img src={{avatar}}>
-                    <strong>{{profile.username}}</strong>
+                    <strong>{{profile.profilename}}</strong>
                     <a id="createPrivateChat" href="#">
                         <i class="icon ion-ios-telephone-outline"></i>
                     </a>
@@ -95,10 +100,9 @@
 
 
 <template name="rooms">
-    <input type="file" class="myFileInput">
     <div class="list">
         {{#each rooms}}
-            <a id="room" class="item">
+            <a id="room" class="item" style={{roomselected}}>
                 {{roomname}}
             </a>
         {{/each}}
