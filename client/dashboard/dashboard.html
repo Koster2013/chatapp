@@ -29,17 +29,15 @@
                             <i class="icon ion-arrow-left-b"></i>
                             Close Me
                         </a>
-
-                        <div class="upload">
-                            <input type="file" id="myFileInput" name="upload"/>
-                        </div>
                     </div>
                     {{> rooms }}
                 </div>
             {{/ionSideMenu}}
             {{#ionSideMenuContent}}
                 <div class="bar bar-header bar-positive">
-                    <h1 class="title">chat app</h1>
+                    <h1 class="title">{{roomname}}</h1>
+                    <a class="button icon ion-person" href="/profile/{{userid}}"></a>
+
                     <button class="button icon ion-navicon" data-ion-menu-toggle="right"></button>
                 </div>
                 <div style="padding-top: 40px;" id="messages1">
@@ -83,7 +81,8 @@
                 <div></div>
             {{else}}
                 <div class="item item-avatar item-icon-right" style={{status}}>
-                    <img src={{avatar}}>
+
+                   <img src={{avatar}}>
                     <strong>{{profile.profilename}}</strong>
                     <a id="createPrivateChat" href="#">
                         <i class="icon ion-ios-telephone-outline"></i>
@@ -92,6 +91,7 @@
                     (
                     <small> Tisch: {{profile.table}}</small>
                     )
+                    <a href="/profile/{{_id}}">profile</a>
                 </div>
             {{/if}}
         {{/each}}
@@ -103,7 +103,7 @@
     <div class="list">
         {{#each rooms}}
             <a id="room" class="item" style={{roomselected}}>
-                {{roomname}}
+                Chat mit: {{roomnameFormated}}
             </a>
         {{/each}}
     </div>

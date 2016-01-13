@@ -6,29 +6,14 @@ Template.dashboard.events({
         if (e.type == "keyup" && e.which == 13) {
             _sendMessage();
         }
+    }
+});
+Template.dashboard.helpers({
+    userid: function () {
+        return Meteor.userId();
     },
-    'change #myFileInput': function (event, template) {
-        FS.Utility.eachFile(event, function (file) {
-            Images.insert(file, function (err, fileObj) {
-                if (err) {
-                    toastr.error("Upload failed... please try again.");
-                } else {
-                    var intervalHandle = Meteor.setInterval(function () {
-                        console.log("Inside interval");
-                        if (fileObj.hasStored("images")) {
-                            // File has been uploaded and stored. Can safely display it on the page.
-                            var imagesURL = {
-                                "profile.image": Meteor.absoluteUrl() + "/cfs/files/images/" + fileObj._id
-                            };
-                            Meteor.users.update(Meteor.userId(), {$set: imagesURL});
-                            toastr.success('Upload succeeded!');
-                            // file has stored, close out interval
-                            Meteor.clearInterval(intervalHandle);
-                        }
-                    }, 1000);
-                }
-            });
-        });
+    roomname: function () {
+        return Session.get("roomname");
     }
 });
 
@@ -82,6 +67,20 @@ Template.rooms.helpers({
     },
     roomselected: function () {
         return  this.roomname == Session.get("roomname")  ? "border-left: 10px solid limegreen;" : "border-left: 10px solid red;" ;
+    },
+    roomnameFormated: function () {
+        if (this.roomname == "mainroom"){
+            return "mainroom";
+        }
+        return this.users[0].profilename + "," + this.users[1].profilename;
+        /*
+        this.users.forEach(function (user) {
+            console.log(user.username);
+            if (user.username != Meteor.user().username){
+                return user.profilename;
+            }
+        });
+        */
     }
 });
 
