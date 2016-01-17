@@ -1,0 +1,53 @@
+<template name="messages">
+  {{#ionBody}}
+    {{#ionSideMenuContainer}}
+      {{#ionSideMenu side="right"}}
+          <div class="bar bar-header bar-dark">
+              <h1 class="title">User</h1>
+          </div>
+          <div class="content has-header">
+              <div class="list">
+                  <a class="item item-icon-left" data-ion-menu-close>
+                      <i class="icon ion-arrow-left-b"></i>
+                      Close Me
+                  </a>
+              </div>
+            {{> users }}
+          </div>
+      {{/ionSideMenu}}
+      {{#ionSideMenuContent}}
+          <div class="bar bar-header bar-positive">
+              <h1 class="title">{{roomname}}</h1>
+
+              <button class="button icon ion-navicon" data-ion-menu-toggle="right"></button>
+          </div>
+
+          <div style="padding-top: 40px;" id="messages1">
+              <ul class="commentArea">
+                {{#each messages}}
+                    <div>
+                        <li class={{thatsMe}}>
+                            <strong>{{username}} </strong>
+                            -
+                            <small>{{timestamp}}</small>
+                            -
+                            (
+                            <small> Tisch: {{table}} </small>
+                            )
+                            <p>{{msg}}</p>
+                        </li>
+                    </div>
+                {{/each}}
+              </ul>
+          </div>
+
+          <div class="bar bar-footer  bar-positive">
+              <label class="item item-input">
+                  <input type="text" id="msg" placeholder="Message">
+              </label>
+              <button class="button button" id="sendMsg" style="width: 50%;">Send</button>
+          </div>
+      {{/ionSideMenuContent}}
+    {{/ionSideMenuContainer}}
+  {{/ionBody}}
+</template>

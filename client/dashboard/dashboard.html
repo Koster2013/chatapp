@@ -16,38 +16,24 @@
                             Sign Out
                         </a>
                     </div>
-                    {{> users }}
                 </div>
             {{/ionSideMenu}}
-            {{#ionSideMenu side="left"}}
-                <div class="bar bar-header bar-dark">
-                    <h1 class="title">Rooms</h1>
-                </div>
-                <div class="content has-header">
-                    <div class="list">
-                        <a class="item item-icon-left" data-ion-menu-close>
-                            <i class="icon ion-arrow-left-b"></i>
-                            Close Me
-                        </a>
-                    </div>
-                    {{> rooms }}
-                </div>
-            {{/ionSideMenu}}
+
             {{#ionSideMenuContent}}
                 <div class="bar bar-header bar-positive">
-                    <h1 class="title">{{roomname}}</h1>
+                    <h1 class="title">Deine chats</h1>
                     <a class="button icon ion-person" href="/profile/{{userid}}"></a>
 
                     <button class="button icon ion-navicon" data-ion-menu-toggle="right"></button>
                 </div>
-                <div style="padding-top: 40px;" id="messages1">
-                    {{> messages}}
+
+
+                <div style="padding-top: 40px;">
+                    {{> rooms}}
                 </div>
+
                 <div class="bar bar-footer  bar-positive">
-                    <label class="item item-input">
-                        <input type="text" id="msg" placeholder="Message">
-                    </label>
-                    <button class="button button" id="sendMsg" style="width: 50%;">Send</button>
+
                 </div>
             {{/ionSideMenuContent}}
         {{/ionSideMenuContainer}}
@@ -55,56 +41,5 @@
 </template>
 
 
-<template name="messages">
-    <ul class="commentArea">
-        {{#each messages}}
-            <div>
-                <li class={{thatsMe}}>
-                    <strong>{{username}} </strong>
-                    -
-                    <small>{{timestamp}}</small>
-                    -
-                    (
-                    <small> Tisch: {{table}} </small>
-                    )
-                    <p>{{msg}}</p>
-                </li>
-            </div>
-        {{/each}}
-    </ul>
-</template>
-
-<template name="users">
-    <div class="list">
-        {{#each users}}
-            {{#if thatsMe }}
-                <div></div>
-            {{else}}
-                <div class="item item-avatar item-icon-right" style={{status}}>
-
-                   <img src={{avatar}}>
-                    <strong>{{profile.profilename}}</strong>
-                    <a id="createPrivateChat" href="#">
-                        <i class="icon ion-ios-telephone-outline"></i>
-                    </a>
-                    <br>
-                    (
-                    <small> Tisch: {{profile.table}}</small>
-                    )
-                    <a href="/profile/{{_id}}">profile</a>
-                </div>
-            {{/if}}
-        {{/each}}
-    </div>
-</template>
 
 
-<template name="rooms">
-    <div class="list">
-        {{#each rooms}}
-            <a id="room" class="item" style={{roomselected}}>
-                Chat mit: {{roomnameFormated}}
-            </a>
-        {{/each}}
-    </div>
-</template>

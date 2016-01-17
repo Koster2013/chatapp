@@ -5,7 +5,7 @@ Template.profile.helpers({
 });
 
 Template.profile.events({
-    'change #myFileInput': function (event, template) {
+    'click #myFileInput': function (event, template) {
         FS.Utility.eachFile(event, function (file) {
             Images.insert(file, function (err, fileObj) {
                 if (err) {
