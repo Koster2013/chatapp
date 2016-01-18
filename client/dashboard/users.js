@@ -3,7 +3,6 @@ Template.users.helpers({
         return _thatsMe(this.username);
     },
     users: function () {
-        console.log(this.roomname);
         return Meteor.users.find({"profile.rooms.roomname": this.roomname});
     },
     avatar: function () {

@@ -1,4 +1,3 @@
-Session.setDefault("roomname", "mainroom");
 
 _sendMessage = function() {
     var el = document.getElementById("msg");

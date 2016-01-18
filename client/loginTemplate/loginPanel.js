@@ -11,37 +11,35 @@ Template.loginPanel.events({
         var table = e.target.table.value;
         var username = new Meteor.Collection.ObjectID().valueOf();
 
-        if(_isConnected()) {
 
-            var user_name = Meteor.users.find({username: username});
-            if (user_name.count() == 0) {
-                Meteor.call('createAppUser', {
-                    username: username,
-                    password: password,
-                    profileUsername: profileUsername,
-                    table: table
-                }, function (err) {
-                    if (!err) {
-                        Meteor.loginWithPassword(username, password, function (err) {
-                            if (err) {
-                                toastr.error("Ihr Benutzer konnte nicht eingeloggt werden!");
-                                console.log(err);
-                            }
-                            else {
-                                console.log("User eingeloggt");
-                            }
-                        });
-                    }
-                    else {
-                        toastr.error("Ihr Benutzer konnte nicht angelegt werden!");
-                    }
-                });
+        var user_name = Meteor.users.find({username: username});
+        if (user_name.count() == 0) {
+            Meteor.call('createAppUser', {
+                username: username,
+                password: password,
+                profileUsername: profileUsername,
+                table: table
+            }, function (err) {
+                if (!err) {
+                    Meteor.loginWithPassword(username, password, function (err) {
+                        if (err) {
+                            toastr.error("Ihr Benutzer konnte nicht eingeloggt werden!");
+                            console.log(err);
+                        }
+                        else {
+                            console.log("User eingeloggt");
+                        }
+                    });
+                }
+                else {
+                    toastr.error("Ihr Benutzer konnte nicht angelegt werden!");
+                }
+            });
 
-            }
-            else {
-                toastr.error("another_user_with_the_given_emailaddress_exists");
-            }
-            return false;
         }
+        else {
+            toastr.error("another_user_with_the_given_emailaddress_exists");
+        }
+        return false;
     }
 });
