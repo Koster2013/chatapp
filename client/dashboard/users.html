@@ -8,15 +8,14 @@
             <div class="item item-avatar item-icon-right" style={{status}}>
 
                 <img src={{avatar}}>
-                <strong>{{profile.profilename}}</strong>
+                <a href="/profile/{{_id}}" > <strong >{{profile.profilename}}</strong> </a>
                 <a id="createPrivateChat" href="#">
-                    <i class="icon ion-ios-telephone-outline"></i>
+                    <i class="icon ion-chatboxes"></i>
                 </a>
                 <br>
                 (
                 <small> Tisch: {{profile.table}}</small>
                 )
-                <a href="/profile/{{_id}}">profile</a>
             </div>
         {{/if}}
       {{/each}}

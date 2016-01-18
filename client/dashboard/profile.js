@@ -1,4 +1,12 @@
 Template.profile.helpers({
+    avatar: function () {
+        var profileimage = this.profile.image;
+        if ( profileimage == undefined ) {
+            return Meteor.absoluteUrl() + "placeholder.png";
+        } else {
+            return profileimage;
+        }
+    },
     thatsMe: function () {
         return _thatsMe(this.username);
     }

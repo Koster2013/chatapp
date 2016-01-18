@@ -2,6 +2,8 @@
 @import 'meteoric_ionic-sass/ionic';
 @import 'meteoric_ionicons-sass/ionicons';
 
+$primary-color: #387ef5;
+
 .bar-footer {
   label.item-input {
     width: 80%;
@@ -9,20 +11,16 @@
   }
 }
 
-
 .commentArea {
   font: 14px Arial;
   padding: 0 10px;
   margin-top: 20px;
 }
 
-
-
-
 .bubbledLeft,.bubbledRight {
   margin-top: 20px;
   padding: 5px 9px;
-  max-width: 50%;
+  max-width: 80%;
   clear: both;
   position: relative;
 }
@@ -57,12 +55,12 @@
   -o-border-radius: 8px 8px 0px 8px;
   -ms-border-radius: 8px 8px 0px 8px;
   border-radius: 8px 8px 0px 8px;
-  background-color: #07D;
+  background-color: $primary-color;
   color: white;
 }
 
 .bubbledRight:before {
-  border-bottom: 9px solid #07D;
+  border-bottom: 9px solid $primary-color;
   border-right: 9px solid rgba(0, 0, 0, 0);
   position: absolute;
   bottom: 0;

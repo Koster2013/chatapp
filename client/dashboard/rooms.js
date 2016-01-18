@@ -2,19 +2,17 @@ Template.rooms.helpers({
     rooms: function () {
         return Rooms.find({"users.username": Meteor.user().username});
     },
-    roomselected: function () {
-        return  this.roomname == Session.get("roomname")  ? "border-left: 10px solid limegreen;" : "border-left: 10px solid red;" ;
-    },
     roomnameFormated: function () {
         if (this.roomname == "mainroom"){
             return "mainroom";
         }
-        return this.users[0].profilename + "," + this.users[1].profilename;
+        if ( this.users[0].profilename == Meteor.user().profile.profilename) {
+            return "Chat mit: " + this.users[1].profilename;
+        }
+        if ( this.users[1].profilename == Meteor.user().profile.profilename ) {
+            return "Chat mit: " + this.users[0].profilename;
+        }
+        return "XXX";
     }
 });
 
-Template.rooms.events({
-    'click #room': function (e) {
-        Session.set("roomname", this.roomname);
-    }
-});
