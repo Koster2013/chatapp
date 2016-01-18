@@ -1,0 +1,10 @@
+
+<template name="rooms">
+    <div class="list">
+      {{#each rooms}}
+          <a id="room" class="item" href="dashboard/{{roomname}}" >
+              Chat mit: {{roomnameFormated}}
+          </a>
+      {{/each}}
+    </div>
+</template>

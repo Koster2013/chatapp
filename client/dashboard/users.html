@@ -1,0 +1,24 @@
+
+<template name="users">
+    <div class="list">
+      {{#each users}}
+        {{#if thatsMe }}
+            <div></div>
+        {{else}}
+            <div class="item item-avatar item-icon-right" style={{status}}>
+
+                <img src={{avatar}}>
+                <strong>{{profile.profilename}}</strong>
+                <a id="createPrivateChat" href="#">
+                    <i class="icon ion-ios-telephone-outline"></i>
+                </a>
+                <br>
+                (
+                <small> Tisch: {{profile.table}}</small>
+                )
+                <a href="/profile/{{_id}}">profile</a>
+            </div>
+        {{/if}}
+      {{/each}}
+    </div>
+</template>

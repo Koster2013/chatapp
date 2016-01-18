@@ -44,14 +44,33 @@ Meteor.publish("messages", function () {
 
 Meteor.methods({
     "createRoom": function (owner, guest) {
-        var roomname = new Meteor.Collection.ObjectID().valueOf();
-        Rooms.insert({roomname: roomname, users: [{username: owner.username},{username: guest.username}]});
-        Meteor.users.update(owner._id, {$push: {"profile.rooms": {roomname: roomname}}});
-        Meteor.users.update(guest._id, {$push: {"profile.rooms": {roomname: roomname}}})
-        return roomname;
+        var room = Rooms.findOne({
+            users: {
+                $all: [{
+                    username: owner.username,
+                    profilename: owner.profile.profilename
+                }, {username: guest.username, profilename: guest.profile.profilename}]
+            }
+        }) ;
+        if (room == undefined) {
+            roomname = new Meteor.Collection.ObjectID().valueOf();
+            Rooms.insert({
+                roomname: roomname,
+                users: [{username: owner.username, profilename: owner.profile.profilename}, {
+                    username: guest.username,
+                    profilename: guest.profile.profilename
+                }]
+            });
+            Meteor.users.update(owner._id, {$push: {"profile.rooms": {roomname: roomname}}});
+            Meteor.users.update(guest._id, {$push: {"profile.rooms": {roomname: roomname}}})
+            return roomname;
+        } else {
+            return room.roomname;
+        }
+
     },
     "removeUser": function (userid) {
-        Meteor.users.remove( { _id: userid });
+        Meteor.users.remove({_id: userid});
     }
 });
 

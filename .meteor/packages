@@ -28,6 +28,7 @@ accounts-password
 #routing
 iron:router
 
+http
 
 #icons
 fortawesome:fontawesome
@@ -38,12 +39,9 @@ meteoric:ionic-sass
 meteoric:ionicons-sass
 meteoric:ionic
 
-
-
-http
 #houston:admin
 cfs:standard-packages
 cfs:gridfs
+
 chrismbeckett:toastr
-#miro:devtools
-zuuk:stale-session
+momentjs:moment
