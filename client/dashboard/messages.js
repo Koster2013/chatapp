@@ -1,10 +1,10 @@
 
 Template.messages.helpers({
     messages: function () {
-        return Messages.find({room: Session.get("roomname")}, {sort: {ts: -1}});
+        return Messages.find({room: this.roomname}, {sort: {ts: -1}});
     },
     timestamp: function () {
-        return this.ts.toLocaleString();
+        return moment(this.ts).format('HH:ss');
     },
     thatsMe: function () {
         return _thatsMe(this.username) ? "bubbledLeft" : "bubbledRight";

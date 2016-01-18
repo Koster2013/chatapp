@@ -46,3 +46,4 @@ cfs:standard-packages
 cfs:gridfs
 chrismbeckett:toastr
 miro:devtools
+momentjs:moment
