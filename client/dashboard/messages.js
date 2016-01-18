@@ -9,6 +9,18 @@ Template.messages.helpers({
     thatsMe: function () {
         return _thatsMe(this.username) ? "bubbledLeft" : "bubbledRight";
     },
+    roomnameFormated: function(){
+        if (this.roomname == "mainroom"){
+            return "mainroom";
+        }
+        if ( this.users[0].profilename == Meteor.user().profile.profilename) {
+            return "Chat mit: " + this.users[1].profilename;
+        }
+        if ( this.users[1].profilename == Meteor.user().profile.profilename ) {
+            return "Chat mit: " + this.users[0].profilename;
+        }
+        return "XXX";
+    },
     avatar: function () {
         return Meteor.users.findOne({username: this.username}).profile.image
     },

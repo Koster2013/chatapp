@@ -7,10 +7,10 @@ Template.rooms.helpers({
             return "mainroom";
         }
         if ( this.users[0].profilename == Meteor.user().profile.profilename) {
-            return this.users[1].profilename;
+            return "Chat mit: " + this.users[1].profilename;
         }
         if ( this.users[1].profilename == Meteor.user().profile.profilename ) {
-            return this.users[0].profilename;
+            return "Chat mit: " + this.users[0].profilename;
         }
         return "XXX";
     }
