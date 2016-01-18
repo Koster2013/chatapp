@@ -1,7 +1,7 @@
 
-_sendMessage = function() {
+_sendMessage = function(roomname) {
     var el = document.getElementById("msg");
-    Messages.insert({username: Meteor.user().username, msg: el.value, ts: new Date(), room: Session.get("roomname")});
+    Messages.insert({username: Meteor.user().username, msg: el.value, ts: new Date(), room: roomname});
     el.value = "";
     el.focus();
 };
