@@ -70,7 +70,9 @@ Meteor.methods({
 
     },
     "removeUser": function (userid) {
-        Meteor.users.remove({_id: userid});
+        //Meteor.users.remove({_id: userid});
+        Meteor.users.update(userid, { $set: {"profile.online": false} } );
+
     }
 });
 
