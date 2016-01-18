@@ -1,6 +1,7 @@
-if (Meteor.isCordova) {
 
-    Template.barcode_scanner.events({
+if (Meteor.isCordova) {
+    console.log("Printed only in mobile cordova apps");
+    Template.barcode.events({
         'click button': function () {
 
             cordova.plugins.barcodeScanner.scan(
@@ -14,9 +15,6 @@ if (Meteor.isCordova) {
                     alert("Scanning failed: " + error);
                 }
             );
-
         }
-
     });
-
 }
