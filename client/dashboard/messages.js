@@ -22,7 +22,12 @@ Template.messages.helpers({
         return "XXX";
     },
     avatar: function () {
-        return Meteor.users.findOne({username: this.username}).profile.image
+        var profileimage = Meteor.users.findOne({username: this.username}).profile.image;
+        if ( profileimage == undefined ) {
+            return Meteor.absoluteUrl() + "placeholder.png";
+        } else {
+            return profileimage;
+        }
     },
     username: function () {
         return Meteor.users.findOne({username: this.username}).profile.profilename;

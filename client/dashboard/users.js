@@ -7,7 +7,12 @@ Template.users.helpers({
         return Meteor.users.find({"profile.rooms.roomname": this.roomname});
     },
     avatar: function () {
-        return this.profile.image;
+        var profileimage = Meteor.users.findOne({username: this.username}).profile.image;
+        if ( profileimage == undefined ) {
+            return Meteor.absoluteUrl() + "placeholder.png";
+        } else {
+            return profileimage;
+        }
     },
     status: function () {
         return this.profile.online == true ? "border-left: 10px solid limegreen;" : "border-left: 10px solid red;";
