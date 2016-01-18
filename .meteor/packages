@@ -45,4 +45,5 @@ http
 cfs:standard-packages
 cfs:gridfs
 chrismbeckett:toastr
-miro:devtools
+#miro:devtools
+zuuk:stale-session
