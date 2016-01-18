@@ -3,6 +3,7 @@ if (Meteor.isServer) {
     Meteor.startup(function () {
         if (Rooms.findOne({roomname: "mainroom"}) == undefined){
             Rooms.insert({roomname: "mainroom"});
+            Location.insert({locationname: "shisha", wlanssid: "TP-LINK_84D190" });
         } else {
 
         }

@@ -41,6 +41,9 @@ Meteor.publish("rooms", function () {
 Meteor.publish("messages", function () {
     return Messages.find({}, {sort: {ts: -1}});
 });
+Meteor.publish("location", function () {
+    return Location.find({});
+});
 
 Meteor.methods({
     "createRoom": function (owner, guest) {
