@@ -5,12 +5,10 @@
 Template.loginPanel.events({
 
     'submit #createForm': function (e) {
-
         var profileUsername = e.target.username.value;
         var password = e.target.password.value;
         var table = e.target.table.value;
         var username = new Meteor.Collection.ObjectID().valueOf();
-
 
         var user_name = Meteor.users.find({username: username});
         if (user_name.count() == 0) {
@@ -42,4 +40,5 @@ Template.loginPanel.events({
         }
         return false;
     }
+
 });
