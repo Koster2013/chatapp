@@ -1,34 +1,44 @@
 <template name="profile">
 
     {{#ionBody}}
-                <div class="bar bar-header bar-positive">
-                    <a class="button icon ion-arrow-left-b" href="/dashboard"></a>
-                    <h1 class="title">Profile</h1>
+        <div class="bar bar-header bar-positive">
+            <a class="button icon ion-arrow-left-b" href="/dashboard"></a>
+
+            <h1 class="title">Profile</h1>
+        </div>
+        <div style="padding-top: 40px;">
+
+            <div class="list card" style="text-align: center;">
+
+                <div class="item ">
+                    <h2> {{profile.profilename}}</h2>
                 </div>
-                <div style="padding-top: 40px;" >
 
-                    <div class="list card" style="text-align: center;">
+                <div class="item item-body">
+                    <img class="full-image" style="max-width: 400px;" src={{avatar}}>
 
-                        <div class="item ">
-                            <h2> {{profile.profilename}}</h2>
+                    <h2> Tisch: {{profile.table}}</h2>
+
+                    {{#if thatsMe }}
+                        <!--<input type="file" id="myFileInput">-->
+
+                        <input type="file" id="myFileInput" onchange="$('#myFileDiv').text($(this).val());"
+                               style="display:none;"/>
+
+                        <div id="myFileDiv" onclick="$('#myFileInput').click();">
+                            <button class="button icon ion-ios-upload"> Bild hochladen</button>
                         </div>
 
-                        <div class="item item-body">
-                            <img class="full-image" style="max-width: 400px;" src={{avatar}}>
-                            <h2> Tisch: {{profile.table}}</h2>
-
-                            {{#if thatsMe }}
-                                <input type="file" id="myFileInput">
-                            {{else}}
-                                <div></div>
-                            {{/if}}
-                        </div>
-
-                    </div>
+                    {{else}}
+                        <div></div>
+                    {{/if}}
                 </div>
-                <div class="bar bar-footer  bar-positive">
-                    {{> barcode}}
-                </div>
+
+            </div>
+        </div>
+        <div class="bar bar-footer  bar-positive">
+            {{> barcode}}
+        </div>
     {{/ionBody}}
 
 </template>
