@@ -14,7 +14,7 @@ Template.users.helpers({
         }
     },
     status: function () {
-        return this.profile.online == true ? "border-left: 10px solid limegreen;" : "border-left: 10px solid red;";
+        return this.profile.online == true ? "border-left: 10px solid #33cd5f;" : "border-left: 10px solid #ef473a;";
     }
 });
 
