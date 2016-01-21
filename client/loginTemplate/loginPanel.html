@@ -8,18 +8,23 @@
 
                         <div class="list list-inset" style="margin-top: 0px;">
                             <div style="text-align: center;padding-bottom: 10px;">
-                                <img class="full-image" src="/shisha.png" style="max-height: 400px;max-width: 400px;">
+                                <img class="full-image" src="/shisha.png" style="max-height: 200px;max-width: 200px;">
                             </div>
 
                             <label class="item item-input">
                                 <input name="username" type="text" placeholder="Benutzername">
                             </label>
-                            <label class="item item-input">
-                                <input name="password" type="password" placeholder="Passwort">
-                            </label>
-                            <label class="item item-input">
-                                <input name="table" type="number" placeholder="Tisch">
-                            </label>
+
+                            {{#unless isCordova }}
+
+                                <label class="item item-input">
+                                    <input name="password" type="password" placeholder="Passwort">
+                                </label>
+                                <label class="item item-input">
+                                    <input name="table" type="number" placeholder="Tisch">
+                                </label>
+
+                            {{/unless}}
                             <div class="padding">
                                 <button type="submit" class="button button-block button-positive activated">Sign In
                                 </button>
