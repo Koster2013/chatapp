@@ -48,4 +48,14 @@ if (Meteor.isCordova) {
             return false;
         }
     });
+
+    Template.loginPanel.helpers({
+        'wlanConnected': function (e) {
+            if (Session.get("wlanConnected") == true) {
+                return "";
+            } else {
+                return "disabled";
+            }
+        }
+    });
 }

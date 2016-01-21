@@ -42,7 +42,8 @@ if (!Meteor.isCordova) {
             }
             return false;
         }
-
     });
 }
+
+
 
