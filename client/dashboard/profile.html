@@ -22,8 +22,7 @@
                     {{#if thatsMe }}
                         <!--<input type="file" id="myFileInput">-->
 
-                        <input type="file" id="myFileInput" onchange="$('#myFileDiv').text($(this).val());"
-                               style="display:none;"/>
+                        <input type="file" id="myFileInput" accept="image/*" style="display:none;"/>
 
                         <div id="myFileDiv" onclick="$('#myFileInput').click();">
                             <button class="button icon ion-ios-upload"> Bild hochladen</button>
