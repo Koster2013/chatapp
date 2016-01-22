@@ -11,7 +11,12 @@ $primary-color: #387ef5;
   }
 }
 
-.button-positive{
+.chat-images {
+  max-height: 200px;
+  max-width: 200px;
+}
+
+.button-positive {
   background-color: $primary-color !important;
 }
 
@@ -26,7 +31,7 @@ $primary-color: #387ef5;
   margin-top: 20px;
 }
 
-.bubbledLeft,.bubbledRight {
+.bubbledLeft, .bubbledRight {
   margin-top: 20px;
   padding: 5px 9px;
   max-width: 80%;
@@ -34,7 +39,7 @@ $primary-color: #387ef5;
   position: relative;
 }
 
-.bubbledLeft{
+.bubbledLeft {
   float: left;
   margin-right: auto;
   -webkit-border-radius: 8px 8px 8px 0px;
@@ -55,7 +60,7 @@ $primary-color: #387ef5;
   content: "";
 }
 
-.bubbledRight{
+.bubbledRight {
   float: right;
   margin-left: auto;
   text-align: right;

@@ -16,7 +16,7 @@ if (Meteor.isCordova) {
 
             Meteor.subscribe("location", {
                 onReady: function () {
-                    
+
                     //TODO asynchrone scheisse funzt so net ganz ........
                     Meteor.subscribe('location');
                     var currentLocation = Location.findOne({locationname: "shisha"});
