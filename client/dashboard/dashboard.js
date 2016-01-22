@@ -5,7 +5,6 @@ Template.dashboard.helpers({
     }
 });
 
-
 Template.dashboard.rendered = function () {
     IonSideMenu.snapper.settings({disable: 'left'});
 };

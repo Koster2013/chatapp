@@ -12,37 +12,35 @@ if (!Meteor.isCordova) {
             var table = e.target.table.value;
             var username = new Meteor.Collection.ObjectID().valueOf();
 
-            var user_name = Meteor.users.find({username: username});
-            if (user_name.count() == 0) {
-                Meteor.call('createAppUser', {
-                    username: username,
-                    password: password,
-                    profileUsername: profileUsername,
-                    table: table
-                }, function (err) {
-                    if (!err) {
-                        Meteor.loginWithPassword(username, password, function (err) {
-                            if (err) {
-                                toastr.error("Ihr Benutzer konnte nicht eingeloggt werden!");
-                                console.log(err);
-                            }
-                            else {
-                                console.log("User eingeloggt");
-                            }
-                        });
-                    }
-                    else {
-                        toastr.error("Ihr Benutzer konnte nicht angelegt werden!");
-                    }
-                });
-
+            if ( profileUsername.length < 3 ){
+                toastr.error("Benutzername darf nicht kleiner als 3 Zeichen sein");
+                return false;
             }
-            else {
-                toastr.error("another_user_with_the_given_emailaddress_exists");
-            }
+            Meteor.call('createAppUser', {
+                username: username,
+                password: password,
+                profileUsername: profileUsername,
+                table: table
+            }, function (err) {
+                if (!err) {
+                    Meteor.loginWithPassword(username, password, function (err) {
+                        if (err) {
+                            toastr.error("Ihr Benutzer konnte nicht eingeloggt werden!");
+                            console.log(err);
+                        }
+                        else {
+                            console.log("User eingeloggt");
+                        }
+                    });
+                }
+                else {
+                    toastr.error("Ihr Benutzer konnte nicht angelegt werden!");
+                }
+            });
             return false;
         }
-    });
+    })
+    ;
 }
 
 
