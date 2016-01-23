@@ -1,8 +1,17 @@
 _sendMessage = function (roomname) {
     var el = document.getElementById("msg");
-    Messages.insert({username: Meteor.user().username, msg: el.value, ts: new Date(), room: roomname});
-    el.value = "";
-    el.focus();
+    console.log(el.value.length)
+    if(el.value.length > 0){
+        Messages.insert({username: Meteor.user().username, msg: el.value, ts: new Date(), room: roomname});
+        el.value = "";
+        el.focus();
+    }else{
+        IonPopup.alert({
+            title: 'Message',
+            template: 'Leere Nachricht',
+            okText: 'Ok'
+        });
+    }
 };
 
 _thatsMe = function (username) {

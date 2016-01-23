@@ -1,5 +1,8 @@
 <template name="dashboard">
+
     {{#ionBody}}
+
+
         {{#ionSideMenuContainer}}
             {{#ionSideMenu side="right"}}
                 <div class="bar bar-header bar-dark">
@@ -24,17 +27,17 @@
             {{/ionSideMenu}}
 
             {{#ionSideMenuContent}}
-                <div class="bar bar-header bar-positive">
-                    <h1 class="title">Deine chats</h1>
 
-                    <button class="button icon ion-navicon" data-ion-menu-toggle="right"></button>
+                <div class="bar bar-header bar-positive" style="position: fixed;">
+                    <h1 class="title">Deine chats</h1>
+                    <!--<button class="button icon ion-navicon" data-ion-menu-toggle="right"></button>-->
                 </div>
 
                 <div style="padding-top: 40px;" id="homepage">
                     {{> rooms}}
                 </div>
 
-                <div class="bar bar-footer  bar-positive">
+                <div class="bar bar-footer  bar-positive" style="position: fixed;">
 
                 </div>
             {{/ionSideMenuContent}}

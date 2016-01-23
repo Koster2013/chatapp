@@ -16,11 +16,11 @@
                 </div>
             {{/ionSideMenu}}
             {{#ionSideMenuContent}}
-                <div class="bar bar-header bar-positive">
+                <div class="bar bar-header bar-positive" style="position: fixed; overflow-y: scroll">
                     <h1 class="title">{{roomnameFormated}}</h1>
 
                     <a class="button icon ion-arrow-left-b" href="/dashboard"></a>
-                    <button class="button icon ion-navicon" data-ion-menu-toggle="right"></button>
+                    <!--<button class="button icon ion-navicon" data-ion-menu-toggle="right"></button>-->
 
                 </div>
 
@@ -41,9 +41,9 @@
                     </ul>
                 </div>
 
-                <div class="bar bar-footer  bar-positive">
+                <div class="bar bar-footer  bar-positive" style="position: fixed; overflow-y: scroll">
                     <label class="item item-input">
-                        <input type="text" id="msg" placeholder="Message">
+                        <input type="text" id="msg" placeholder="Message" required="required" />
                     </label>
                     <button class="button button" id="sendMsg" style="width: 50%;">Send</button>
                 </div>
