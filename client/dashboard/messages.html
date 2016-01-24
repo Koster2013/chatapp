@@ -1,5 +1,10 @@
 <template name="messages">
     {{#ionBody}}
+        <style>
+            .menu-content {
+                background-image: url('/background.jpg');
+            }
+        </style>
         {{#ionSideMenuContainer}}
             {{#ionSideMenu side="right"}}
                 <div class="bar bar-header bar-dark">
@@ -16,12 +21,10 @@
                 </div>
             {{/ionSideMenu}}
             {{#ionSideMenuContent}}
-                <div class="bar bar-header bar-positive" style="position: fixed; overflow-y: scroll">
-                    <h1 class="title">{{roomnameFormated}}</h1>
-
+                <div class="bar bar-header bar-positive" style="position: fixed; overflow-y: hidden">
                     <a class="button icon ion-arrow-left-b" href="/dashboard"></a>
-                    <!--<button class="button icon ion-navicon" data-ion-menu-toggle="right"></button>-->
 
+                    <h1 class="title">{{roomnameFormated}}</h1>
                 </div>
 
                 <div style="padding-top: 40px;" id="messages1">
@@ -41,9 +44,9 @@
                     </ul>
                 </div>
 
-                <div class="bar bar-footer  bar-positive" style="position: fixed; overflow-y: scroll">
+                <div class="bar bar-footer  bar-positive" style="position: fixed; overflow-y: hidden">
                     <label class="item item-input">
-                        <input type="text" id="msg" placeholder="Message" required="required" />
+                        <input type="text" id="msg" placeholder="Message" required="required"/>
                     </label>
                     <button class="button button" id="sendMsg" style="width: 50%;">Send</button>
                 </div>
