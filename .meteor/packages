@@ -31,7 +31,7 @@ iron:router
 http
 
 #icons
-fortawesome:fontawesome
+#fortawesome:fontawesome
 
 #ionic
 fourseven:scss@3.2.0

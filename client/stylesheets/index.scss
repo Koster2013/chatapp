@@ -17,11 +17,11 @@ $primary-color: #387ef5;
 }
 
 .button-positive {
-  background-color: $primary-color !important;
+  background-color: #46006d !important;
 }
 
 .user a {
-  color: $primary-color !important;
+  color: #46006d !important;
   text-decoration: inherit;
 }
 
@@ -80,4 +80,8 @@ $primary-color: #387ef5;
   bottom: 0;
   right: -8px;
   content: "";
+}
+
+.menu-content {
+  overflow-y: auto;
 }

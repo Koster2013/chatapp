@@ -13,27 +13,40 @@ Template.profile.helpers({
 });
 
 Template.profile.events({
-    'click #myFileInput': function (event, template) {
+    'change #myFileInput': function (event, template) {
         FS.Utility.eachFile(event, function (file) {
-            Images.insert(file, function (err, fileObj) {
-                if (err) {
-                    toastr.error("Upload failed... please try again.");
-                } else {
-                    var intervalHandle = Meteor.setInterval(function () {
-                        console.log("Inside interval");
-                        if (fileObj.hasStored("images")) {
-                            // File has been uploaded and stored. Can safely display it on the page.
-                            var imagesURL = {
-                                "profile.image": Meteor.absoluteUrl() + "/cfs/files/images/" + fileObj._id
-                            };
-                            Meteor.users.update(Meteor.userId(), {$set: imagesURL});
-                            toastr.success('Upload succeeded!');
-                            // file has stored, close out interval
-                            Meteor.clearInterval(intervalHandle);
-                        }
-                    }, 1000);
-                }
-            });
+            console.log(file.size)
+            if(file.size < 4000000){
+                Images.insert(file, function (err, fileObj) {
+                    if (err) {
+                        IonPopup.alert({
+                            title: 'Bild upload',
+                            template: 'Bild upload fehlgeschlagen!',
+                            okText: 'Ok'
+                        });
+                    } else {
+                        var intervalHandle = Meteor.setInterval(function () {
+                            console.log("Inside interval");
+                            if (fileObj.hasStored("images")) {
+                                // File has been uploaded and stored. Can safely display it on the page.
+                                var imagesURL = {
+                                    "profile.image": Meteor.absoluteUrl() + "/cfs/files/images/" + fileObj._id
+                                };
+                                Meteor.users.update(Meteor.userId(), {$set: imagesURL});
+                                IonPopup.alert({
+                                    title: 'Bild upload',
+                                    template: 'Bild upload erfolgreich!',
+                                    okText: 'Ok'
+                                });
+                                // file has stored, close out interval
+                                Meteor.clearInterval(intervalHandle);
+                            }
+                        }, 1000);
+                    }
+                });
+            }
+
         });
     }
+
 })
