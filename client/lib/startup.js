@@ -10,16 +10,11 @@ if (Meteor.isCordova) {
                 });
             }
 
-
-
-
-
             Meteor.subscribe("location", {
                 onReady: function () {
 
                     //TODO asynchrone scheisse funzt so net ganz ........
-                    Meteor.subscribe('location');
-                    var currentLocation = Location.findOne({locationname: "shisha"});
+                    var currentLocation = Location.find({});
                     var networkState = navigator.connection.type;
                     if (networkState == "none") {
                         Session.set("wlanConnected", false)
@@ -30,15 +25,19 @@ if (Meteor.isCordova) {
                     }
                     if (networkState == "wifi") {
                         WifiWizard.getCurrentSSID(function (success) {
-                            if (success.indexOf(currentLocation.wlanssid) > 0) {
-                                Session.set("wlanConnected", true)
-                            } else {
-                                Session.set("wlanConnected", false)
-                                IonPopup.alert({
-                                    title: 'Falsches Wlan',
-                                    template: 'Es muss sich mit dem Lokal Wlan verbunden werden um die Anwendung zu nutzen'
-                                });
-                            }
+                            currentLocation.forEach(function(key){
+                                if (success.indexOf(key.wlanssid) > 0) {
+                                    Session.set("wlanConnected", true);
+                                    Session.set("location", key.wlanssid);
+                                } else {
+                                    Session.set("wlanConnected", false)
+                                    IonPopup.alert({
+                                        title: 'Falsches Wlan',
+                                        template: 'Es muss sich mit dem Lokal Wlan verbunden werden um die Anwendung zu nutzen'
+                                    });
+                                }
+                            });
+
                         }, function (error) {
                             console.log(error)
                         });

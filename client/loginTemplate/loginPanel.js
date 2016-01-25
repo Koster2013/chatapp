@@ -7,12 +7,33 @@ if (!Meteor.isCordova) {
     Template.loginPanel.events({
 
         'submit #createForm': function (e) {
+
+
+
+
             var profileUsername = e.target.username.value;
             var password = e.target.password.value;
             var table = e.target.table.value;
+            var location = e.target.location.value;
+
+            Meteor.subscribe("location", {
+                onReady: function () {
+                    var currentLocation = Location.find({}).fetch();
+                    currentLocation.forEach(function (key) {
+                        if (location.indexOf(key.wlanssid) > 0) {
+                            
+                        } else {
+                        }
+                    });
+                },
+                onError: function () {
+                    console.log("onError", arguments);
+                }
+            });
+
             var username = new Meteor.Collection.ObjectID().valueOf();
 
-            if ( profileUsername.length < 3 ){
+            if (profileUsername.length < 3) {
                 toastr.error("Benutzername darf nicht kleiner als 3 Zeichen sein");
                 return false;
             }
@@ -20,7 +41,8 @@ if (!Meteor.isCordova) {
                 username: username,
                 password: password,
                 profileUsername: profileUsername,
-                table: table
+                table: table,
+                location: location
             }, function (err) {
                 if (!err) {
                     Meteor.loginWithPassword(username, password, function (err) {
