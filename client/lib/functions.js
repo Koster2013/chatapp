@@ -1,11 +1,12 @@
 _sendMessage = function (roomname) {
     var el = document.getElementById("msg");
+    var currentLocation = Session.get("location");
     console.log(el.value.length)
-    if(el.value.length > 0){
-        Messages.insert({username: Meteor.user().username, msg: el.value, ts: new Date(), room: roomname});
+    if (el.value.length > 0) {
+        Messages.insert({username: Meteor.user().username, msg: el.value, ts: new Date(), room: roomname, location: currentLocation });
         el.value = "";
         el.focus();
-    }else{
+    } else {
         IonPopup.alert({
             title: 'Message',
             template: 'Leere Nachricht',
@@ -19,31 +20,62 @@ _thatsMe = function (username) {
     return me == username ? true : false;
 };
 
+_createAndLoginUser = function (username, password, profileUsername, table, location) {
+    Meteor.call('createAppUser', {
+        username: username,
+        password: password,
+        profileUsername: profileUsername,
+        table: table,
+        location: location
+    }, function (err) {
+        if (!err) {
+            Meteor.loginWithPassword(username, password, function (err) {
+                if (err) {
+                    toastr.error("Ihr Benutzer konnte nicht eingeloggt werden!");
+                    console.log(err);
+                }
+                else {
+                    Session.set("location", location);
+                    Meteor.subscribe("rooms", location);
+                    Meteor.subscribe("messages", location);
+                    Meteor.subscribe("images" );
+                    Meteor.subscribe('users' , location);
+                    console.log("User eingeloggt");
+                }
+            });
+        }
+        else {
+            toastr.error("Ihr Benutzer konnte nicht angelegt werden!");
+        }
+    });
+};
 
-/*
-
-
- if (Meteor.isCordova) {
-
- _isConnected = function (callback) {
- var currentLocation = Location.findOne({locationname: "shisha"}).wlanssid;
- if (Meteor.isCordova) {
- var networkState = navigator.connection.type;
- if (networkState == "wifi") {
- WifiWizard.getCurrentSSID(function (success) {
- if (success.indexOf(currentLocation) > 0) {
- callback(undefined, true);
- } else {
- callback(undefined, false);
- }
- }, function (error) {
- console.log(error)
- callback(error, undefined);
- });
- }
- }
- }
-
- }
-
- */
+//Mobile Startup
+if (Meteor.isCordova) {
+    _checkWlanMobile = function (callback) {
+        Meteor.subscribe("location").readyPromise().then(function (result) {
+            var currentLocation = Location.find({}).fetch();
+            var networkState = navigator.connection.type;
+            if (networkState == "none") {
+                callback(false);
+            }
+            if (networkState == "wifi") {
+                WifiWizard.getCurrentSSID(function (success) {
+                    currentLocation.forEach(function (key) {
+                        if (success.indexOf(key.wlanssid) > 0) {
+                            Session.set("location", key.wlanssid);
+                            callback(true);
+                        } else {
+                            callback(false);
+                        }
+                    });
+                }, function (error) {
+                    callback(false);
+                    console.log(error)
+                });
+            }
+            //TODO
+            callback(false);
+        });
+    };
+}

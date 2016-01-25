@@ -2,8 +2,8 @@ if (Meteor.isServer) {
 
     Meteor.startup(function () {
         if (Rooms.findOne({roomname: "mainroom"}) == undefined){
-            Rooms.insert({roomname: "mainroom"});
             Location.insert({locationname: "shisha", wlanssid: "EasyBox-0B6B28" });
+            Rooms.insert({roomname: "mainroom", location: "1EasyBox-0B6B281"});
         } else {
 
         }
@@ -22,6 +22,7 @@ if (Meteor.isServer) {
                 profile: {
                     role: "user",
                     table: obj.table,
+                    location: obj.location,
                     online: true,
                     profilename: obj.profileUsername,
                     rooms: [{roomname: "mainroom"}]

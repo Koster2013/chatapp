@@ -28,25 +28,25 @@ Images.allow({
         return true;
     }
 });
-Meteor.publish("users", function () {
-    return Meteor.users.find({});
+Meteor.publish("users", function (location) {
+    return Meteor.users.find({location: location});
 });
 Meteor.publish("images", function () {
     return Images.find();
 });
 
-Meteor.publish("rooms", function () {
-    return Rooms.find();
+Meteor.publish("rooms", function (location) {
+    return Rooms.find({location: location});
 });
-Meteor.publish("messages", function () {
-    return Messages.find({}, {sort: {ts: -1}});
+Meteor.publish("messages", function (location) {
+    return Messages.find({location: location}, {sort: {ts: -1}});
 });
 Meteor.publish("location", function () {
     return Location.find({});
 });
 
 Meteor.methods({
-    "createRoom": function (owner, guest) {
+    "createRoom": function (owner, guest, location) {
         var room = Rooms.findOne({
             users: {
                 $all: [{
@@ -62,7 +62,8 @@ Meteor.methods({
                 users: [{username: owner.username, profilename: owner.profile.profilename}, {
                     username: guest.username,
                     profilename: guest.profile.profilename
-                }]
+                }],
+                location:location
             });
             Meteor.users.update(owner._id, {$push: {"profile.rooms": {roomname: roomname}}});
             Meteor.users.update(guest._id, {$push: {"profile.rooms": {roomname: roomname}}})

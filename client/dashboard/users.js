@@ -7,7 +7,7 @@ Template.users.helpers({
     },
     avatar: function () {
         var profileimage = Meteor.users.findOne({username: this.username}).profile.image;
-        if ( profileimage == undefined ) {
+        if (profileimage == undefined) {
             return Meteor.absoluteUrl() + "placeholder.png";
         } else {
             return profileimage;
@@ -20,8 +20,9 @@ Template.users.helpers({
 
 Template.users.events({
     'click #createPrivateChat': function (e) {
-        Meteor.call("createRoom", Meteor.user(), this, function (error, result) {
-                Router.go('/dashboard/' + result);
+        var currentLocation = Session.get("locaton");
+        Meteor.call("createRoom", Meteor.user(), this, function (error, result, currentLocation ){
+            Router.go('/dashboard/' + result);
         });
     }
 });

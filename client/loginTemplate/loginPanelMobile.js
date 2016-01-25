@@ -16,32 +16,14 @@ if (Meteor.isCordova) {
             cordova.plugins.barcodeScanner.scan(
                 function (result) {
                     var table = result.text;
-                    //TODO hier noch auf number überprüfen usw. ( Das muss alles aus der DB kommen sonst kann man auch einen flaschen code eilesen..
                     if (table == "" || table == undefined || table > 50) {
                         IonPopup.alert({title: 'Fehlerhafter Barcode', template: 'Das ist kein gültiger Tischcode!'});
                         return false;
                     } else {
-                        Meteor.call('createAppUser', {
-                            username: username,
-                            password: password,
-                            profileUsername: profileUsername,
-                            table: table
-                        }, function (err) {
-                            if (!err) {
-                                Meteor.loginWithPassword(username, password, function (err) {
-                                    if (err) {
-                                        IonPopup.alert({title: 'Keine Verbindung zum Server', template: "Benutzer konnte nicht eingeloggt werden!"});
-                                        console.log(err);
-                                    }
-                                    else {
-                                        console.log("User eingeloggt");
-                                    }
-                                });
-                            }
-                            else {
-                                IonPopup.alert({title: 'Benutzer anlegen fehlgeschlagen', template: "Benutzer konnte nicht angelegt werden!"});
-                            }
-                        });
+                        if (Session.get("location") != undefined ){
+                            _createAndLoginUser(username, password, profileUsername, table, Session.get("location"))
+                        }
+                        return false;
                     }
                 },
                 function (error) {
