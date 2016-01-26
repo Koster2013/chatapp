@@ -17,11 +17,11 @@ $primary-color: #387ef5;
 }
 
 .button-positive {
-  background-color: #46006d !important;
+  background-color: $primary-color !important;
 }
 
 .user a {
-  color: #46006d !important;
+  color: $primary-color !important;
   text-decoration: inherit;
 }
 

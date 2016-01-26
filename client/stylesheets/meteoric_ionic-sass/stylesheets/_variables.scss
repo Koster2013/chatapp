@@ -4,8 +4,7 @@
 
 $light:                           #fff !default;
 $stable:                          #f8f8f8 !default;
-$positive:                         #387ef5 !default;
-$modified:                        #46006d !default;
+$positive:                        #387ef5 !default;
 $calm:                            #11c1f3 !default;
 $balanced:                        #33cd5f !default;
 $energized:                       #ffc900 !default;
@@ -39,7 +38,7 @@ $headings-line-height:            1.2 !default;
 $base-background-color:           #fff !default;
 $base-color:                      #000 !default;
 
-$link-color:                      $modified !default;
+$link-color:                      $positive !default;
 $link-hover-color:                darken($link-color, 15%) !default;
 
 $content-padding:                 10px !default;
@@ -105,11 +104,11 @@ $button-stable-border:            #b2b2b2 !default;
 $button-stable-active-bg:         #e5e5e5 !default;
 $button-stable-active-border:     #a2a2a2 !default;
 
-$button-positive-bg:              $modified !default;
+$button-positive-bg:              $positive !default;
 $button-positive-text:            #fff !default;
-$button-positive-border:          darken($modified, 10%) !default;
-$button-positive-active-bg:       darken($modified, 10%) !default;
-$button-positive-active-border:   darken($modified, 10%) !default;
+$button-positive-border:          darken($positive, 10%) !default;
+$button-positive-active-bg:       darken($positive, 10%) !default;
+$button-positive-active-border:   darken($positive, 10%) !default;
 
 $button-calm-bg:                  $calm !default;
 $button-calm-text:                #fff !default;
@@ -464,7 +463,7 @@ $toggle-on-light-bg:              $button-light-border !default;
 $toggle-on-light-border:          $toggle-on-light-bg !default;
 $toggle-on-stable-bg:             $button-stable-border !default;
 $toggle-on-stable-border:         $toggle-on-stable-bg !default;
-$toggle-on-positive-bg:           $modified !default;
+$toggle-on-positive-bg:           $positive !default;
 $toggle-on-positive-border:       $toggle-on-positive-bg !default;
 $toggle-on-calm-bg:               $calm !default;
 $toggle-on-calm-border:           $toggle-on-calm-bg !default;
@@ -502,8 +501,8 @@ $checkbox-off-border-light:       $button-light-border !default;
 $checkbox-on-bg-light:            $button-light-border !default;
 $checkbox-off-border-stable:      $button-stable-border !default;
 $checkbox-on-bg-stable:           $button-stable-border !default;
-$checkbox-off-border-positive:    $modified !default;
-$checkbox-on-bg-positive:         $modified !default;
+$checkbox-off-border-positive:    $positive !default;
+$checkbox-on-bg-positive:         $positive !default;
 $checkbox-off-border-calm:        $calm !default;
 $checkbox-on-bg-calm:             $calm !default;
 $checkbox-off-border-assertive:   $assertive !default;
@@ -517,8 +516,8 @@ $checkbox-on-bg-royal:            $royal !default;
 $checkbox-off-border-dark:        $dark !default;
 $checkbox-on-bg-dark:             $dark !default;
 $checkbox-off-border-default:     $button-light-border !default;
-$checkbox-on-bg-default:          $modified !default;
-$checkbox-on-border-default:      $modified !default;
+$checkbox-on-bg-default:          $positive !default;
+$checkbox-on-border-default:      $positive !default;
 
 $checkbox-check-width:            1px !default;
 $checkbox-check-color:            #fff !default;
@@ -693,8 +692,8 @@ $spinner-light-fill:              $light !default;
 $spinner-stable-stroke:           $stable !default;
 $spinner-stable-fill:             $stable !default;
 
-$spinner-positive-stroke:         $modified !default;
-$spinner-positive-fill:           $modified !default;
+$spinner-positive-stroke:         $positive !default;
+$spinner-positive-fill:           $positive !default;
 
 $spinner-calm-stroke:             $calm !default;
 $spinner-calm-fill:               $calm !default;
