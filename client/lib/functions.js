@@ -50,32 +50,12 @@ _createAndLoginUser = function (username, password, profileUsername, table, loca
     });
 };
 
-//Mobile Startup
-if (Meteor.isCordova) {
-    _checkWlanMobile = function (callback) {
-        Meteor.subscribe("location").readyPromise().then(function (result) {
-            var currentLocation = Location.find({}).fetch();
-            var networkState = navigator.connection.type;
-            if (networkState == "none") {
-                callback(false);
-            }
-            if (networkState == "wifi") {
-                WifiWizard.getCurrentSSID(function (success) {
-                    currentLocation.forEach(function (key) {
-                        if (success.indexOf(key.wlanssid) > 0) {
-                            Session.set("location", key.wlanssid);
-                            callback(true);
-                        } else {
-                            callback(false);
-                        }
-                    });
-                }, function (error) {
-                    callback(false);
-                    console.log(error)
-                });
-            }
-            //TODO
-            callback(false);
-        });
-    };
+_meteorSubscribe = function () {
+    var location = Session.get("location");
+    Meteor.subscribe("rooms", location);
+    Meteor.subscribe("messages", location);
+    Meteor.subscribe("images" );
+    Meteor.subscribe('users' , location);
 }
+
+

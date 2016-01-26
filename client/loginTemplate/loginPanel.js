@@ -22,7 +22,7 @@ if (!Meteor.isCordova) {
             Meteor.subscribe("location").readyPromise().then(function (result) {
                 var currentLocation = Location.find({}).fetch();
                 currentLocation.forEach(function (key) {
-                    if (location.indexOf(key.wlanssid) > 0) {
+                    if (location == key.wlanssid) {
                         toastr.error("Benutzername darf nicht kleiner als 3 Zeichen sein");
                         _createAndLoginUser(username, password, profileUsername, table, location);
                     } else {

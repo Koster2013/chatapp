@@ -29,7 +29,7 @@ Images.allow({
     }
 });
 Meteor.publish("users", function (location) {
-    return Meteor.users.find({location: location});
+    return Meteor.users.find({});
 });
 Meteor.publish("images", function () {
     return Images.find();
@@ -63,7 +63,7 @@ Meteor.methods({
                     username: guest.username,
                     profilename: guest.profile.profilename
                 }],
-                location:location
+                location: location
             });
             Meteor.users.update(owner._id, {$push: {"profile.rooms": {roomname: roomname}}});
             Meteor.users.update(guest._id, {$push: {"profile.rooms": {roomname: roomname}}})

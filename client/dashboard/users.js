@@ -3,7 +3,8 @@ Template.users.helpers({
         return _thatsMe(this.username);
     },
     users: function () {
-        return Meteor.users.find({"profile.rooms.roomname": this.roomname});
+        var location = Session.get("location");
+        return Meteor.users.find({"profile.rooms.roomname": this.roomname, "profile.location": location});
     },
     avatar: function () {
         var profileimage = Meteor.users.findOne({username: this.username}).profile.image;
@@ -20,8 +21,8 @@ Template.users.helpers({
 
 Template.users.events({
     'click #createPrivateChat': function (e) {
-        var currentLocation = Session.get("locaton");
-        Meteor.call("createRoom", Meteor.user(), this, function (error, result, currentLocation ){
+        var currentLocation = Session.get("location");
+        Meteor.call("createRoom", Meteor.user(), this, currentLocation, function (error, result ){
             Router.go('/dashboard/' + result);
         });
     }

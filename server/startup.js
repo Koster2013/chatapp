@@ -2,8 +2,10 @@ if (Meteor.isServer) {
 
     Meteor.startup(function () {
         if (Rooms.findOne({roomname: "mainroom"}) == undefined){
-            Location.insert({locationname: "shisha", wlanssid: "EasyBox-0B6B28" });
-            Rooms.insert({roomname: "mainroom", location: "1EasyBox-0B6B281"});
+            Location.insert({locationname: "erdem", wlanssid: "EasyBox-0B6B28" });
+            Rooms.insert({roomname: "mainroom", location: "EasyBox-0B6B28"});
+            Location.insert({locationname: "koster", wlanssid: "TP-LINK_84D190" });
+            Rooms.insert({roomname: "mainroom", location: "TP-LINK_84D190"});
         } else {
 
         }
@@ -15,7 +17,7 @@ if (Meteor.isServer) {
 
     Meteor.methods({
         createAppUser: function (obj) {
-            Rooms.update({roomname: "mainroom"}, { $push: {"users": { username: obj.username }}});
+            Rooms.update({roomname: "mainroom", location: obj.location}, { $push: {"users": { username: obj.username }}});
             Accounts.createUser({
                 username: obj.username,
                 password: obj.password,
