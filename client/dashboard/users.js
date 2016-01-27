@@ -5,10 +5,14 @@ Template.users.helpers({
     users: function () {
         var location = Session.get("location");
         var tableSelected = Session.get("tableSelected");
-        if ( tableSelected == "all") {
-            return Meteor.users.find({"profile.rooms.roomname": this.roomname, "profile.location": location });
+        if (tableSelected == "all") {
+            return Meteor.users.find({"profile.rooms.roomname": this.roomname, "profile.location": location});
         } else {
-            return Meteor.users.find({"profile.rooms.roomname": this.roomname, "profile.location": location, "profile.table": tableSelected});
+            return Meteor.users.find({
+                "profile.rooms.roomname": this.roomname,
+                "profile.location": location,
+                "profile.table": tableSelected
+            });
         }
     },
     avatar: function () {
@@ -21,17 +25,22 @@ Template.users.helpers({
     },
     tables: function () {
         var tables = [
-            {number: "all"},
-            {number: 1},
-            {number: 3},
-            {number: 4},
-            {number: 5},
-            {number: 6}
+            {number: "all"}
         ]
-        return tables;
+        var users = Meteor.users.find({"profile.rooms.roomname": this.roomname, "profile.location": this.location}).fetch();
+        users.forEach(function (user) {
+            tables.push({number: user.profile.table});
+        });
+        var destArray = _.uniq(tables, function (x) {
+            return x.number;
+        });
+        return destArray;
     },
     status: function () {
         return this.profile.online == true ? "border-left: 10px solid #33cd5f;" : "border-left: 10px solid #ef473a;";
+    },
+    isMainRoom: function () {
+        return this.roomname == "mainroom" ? true : false;
     }
 })
 ;
@@ -44,7 +53,7 @@ Template.users.events({
         });
     },
 
-    "change #tablePicker": function(evt) {
+    "change #tablePicker": function (evt) {
         var newValue = $(evt.target).val();
         Session.set("tableSelected", newValue);
     }

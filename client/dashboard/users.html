@@ -2,20 +2,26 @@
 <template name="users">
 
 
-    <div class="list">
 
-        <label class="item item-input item-select">
-            <div class="input-label">
-                Tische
-            </div>
-            <select id="tablePicker">
-            {{#each tables}}
-                <option>{{number}}</option>
-            {{/each}}
-            </select>
-        </label>
+    {{#if isMainRoom }}
+        <div class="list">
 
-    </div>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Tische
+                </div>
+                <select id="tablePicker">
+                    {{#each tables}}
+                        <option>{{number}}</option>
+                    {{/each}}
+                </select>
+            </label>
+
+        </div>
+    {{else}}
+        <div></div>
+    {{/if}}
+
     <div class="list">
       {{#each users}}
         {{#if thatsMe }}
