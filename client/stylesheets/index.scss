@@ -4,6 +4,14 @@
 
 $primary-color: #387ef5;
 
+
+.menu-content {
+  background-image: url('/backgroundwallpaper.jpg');
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;
+}
+
 .bar-footer {
   label.item-input {
     width: 80%;
