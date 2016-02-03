@@ -7,7 +7,8 @@ Template.dashboard.helpers({
 
 Template.dashboard.events({
     'click #subscribe' : function () {
-        return _meteorSubscribe();
+        var location = Session.get("location");
+        return _meteorSubscribe(location);
     }
 });
 

@@ -3,7 +3,13 @@ _sendMessage = function (roomname) {
     var currentLocation = Session.get("location");
     console.log(el.value.length)
     if (el.value.length > 0) {
-        Messages.insert({username: Meteor.user().username, msg: el.value, ts: new Date(), room: roomname, location: currentLocation });
+        Messages.insert({
+            username: Meteor.user().username,
+            msg: el.value,
+            ts: new Date(),
+            room: roomname,
+            location: currentLocation
+        });
         el.value = "";
         el.focus();
     } else {
@@ -35,11 +41,7 @@ _createAndLoginUser = function (username, password, profileUsername, table, loca
                     console.log(err);
                 }
                 else {
-                    Session.set("location", location);
-                    Meteor.subscribe("rooms", location);
-                    Meteor.subscribe("messages", location);
-                    Meteor.subscribe("images" );
-                    Meteor.subscribe('users' , location);
+                    _meteorSubscribe(location);
                     console.log("User eingeloggt");
                 }
             });
@@ -50,12 +52,12 @@ _createAndLoginUser = function (username, password, profileUsername, table, loca
     });
 };
 
-_meteorSubscribe = function () {
-    var location = Session.get("location");
+_meteorSubscribe = function (location) {
     Meteor.subscribe("rooms", location);
     Meteor.subscribe("messages", location);
-    Meteor.subscribe("images" );
-    Meteor.subscribe('users' , location);
+    Meteor.subscribe("images");
+    Meteor.subscribe('users', location);
+    Session.set("location", location);
 }
 
 

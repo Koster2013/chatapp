@@ -23,10 +23,8 @@ if (!Meteor.isCordova) {
                 var currentLocation = Location.find({}).fetch();
                 currentLocation.forEach(function (key) {
                     if (location == key.wlanssid) {
-                        toastr.error("Benutzername darf nicht kleiner als 3 Zeichen sein");
-                        _createAndLoginUser(username, password, profileUsername, table, location);
+                        return _createAndLoginUser(username, password, profileUsername, table, location);
                     } else {
-                        toastr.error("Loaction nicht gefunden");
                         return false;
                     }
                 });

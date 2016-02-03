@@ -3,14 +3,14 @@ Template.users.helpers({
         return _thatsMe(this.username);
     },
     users: function () {
-        var location = Session.get("location");
         var tableSelected = Session.get("tableSelected");
         if (tableSelected == "all") {
-            return Meteor.users.find({"profile.rooms.roomname": this.roomname, "profile.location": location});
+            return Meteor.users.find({"profile.rooms.roomname": this.roomname, "profile.location": this.location});
         } else {
+            console.log(this);
             return Meteor.users.find({
                 "profile.rooms.roomname": this.roomname,
-                "profile.location": location,
+                "profile.location": this.location,
                 "profile.table": tableSelected
             });
         }
