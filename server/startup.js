@@ -1,6 +1,7 @@
 if (Meteor.isServer) {
 
     Meteor.startup(function () {
+        SyncedCron.start();
         if (Rooms.findOne({roomname: "mainroom"}) == undefined){
             Location.insert({locationname: "erdem", wlanssid: "EasyBox-0B6B28" });
             Rooms.insert({roomname: "mainroom", location: "EasyBox-0B6B28"});
@@ -32,4 +33,14 @@ if (Meteor.isServer) {
             });
         }
     });
+/*
+    Accounts.validateLoginAttempt(function(info) {
+        var user = info.user;
+
+        if(user.resume == false ) {
+            console.log("test");
+
+        }
+
+    });*/
 }

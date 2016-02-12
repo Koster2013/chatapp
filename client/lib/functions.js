@@ -51,13 +51,24 @@ _createAndLoginUser = function (username, password, profileUsername, table, loca
         }
     });
 };
-
+if (Meteor.userId()){
+    var location = localStorage.getItem("location");
+    if (location) {
+        Meteor.subscribe("rooms", "TP-LINK_84D190");
+        Meteor.subscribe("messages", "TP-LINK_84D190");
+        Meteor.subscribe("images");
+        Meteor.subscribe('users', "TP-LINK_84D190");
+        Session.set("location", "TP-LINK_84D190");
+    }
+}
 _meteorSubscribe = function (location) {
     Meteor.subscribe("rooms", location);
     Meteor.subscribe("messages", location);
     Meteor.subscribe("images");
     Meteor.subscribe('users', location);
     Session.set("location", location);
+    localStorage.setItem("location", location);
+
 }
 
 _checkWlanMobile = function (callback) {
