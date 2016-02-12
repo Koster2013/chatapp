@@ -35,7 +35,24 @@ if (Meteor.isCordova) {
                 }
             );
             return false;
+        },
+
+        'click #checkWlan': function (e) {
+            _checkWlanMobile(function (result) {
+                if (result == true) {
+                    Session.set("wlanConnected", result);
+                }
+                else {
+                    IonPopup.alert({
+                        title: "Wlan Benachrichtigung!",
+                        template: "Die Anwendung funktioniert nur im lokal WLAN",
+                        okText: "Ok"
+                    });
+                }
+            });
         }
+
+
     });
 
     Template.loginPanel.helpers({

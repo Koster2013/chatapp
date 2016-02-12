@@ -7,7 +7,6 @@ Template.users.helpers({
         if (tableSelected == "all") {
             return Meteor.users.find({"profile.rooms.roomname": this.roomname, "profile.location": this.location});
         } else {
-            console.log(this);
             return Meteor.users.find({
                 "profile.rooms.roomname": this.roomname,
                 "profile.location": this.location,

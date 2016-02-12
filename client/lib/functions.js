@@ -60,4 +60,28 @@ _meteorSubscribe = function (location) {
     Session.set("location", location);
 }
 
-
+_checkWlanMobile = function (callback) {
+    Meteor.subscribe("location").readyPromise().then(function (result) {
+        var currentLocation = Location.find({}).fetch();
+        var networkState = navigator.connection.type;
+        if (networkState == "none") {
+            callback(false);
+        }
+        if (networkState == "wifi") {
+            WifiWizard.getCurrentSSID(function (success) {
+                var ssid = success.replace(/"/g, "").trim();
+                currentLocation.forEach(function (key) {
+                    if (ssid == key.wlanssid) {
+                        Session.set("location", key.wlanssid);
+                        callback(true);
+                    } else {
+                        callback(false);
+                    }
+                });
+            }, function (error) {
+                callback(false);
+                console.log(error)
+            });
+        }
+    });
+};
