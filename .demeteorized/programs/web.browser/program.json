@@ -1,0 +1,101 @@
+{
+  "format": "web-program-pre1",
+  "manifest": [
+    {
+      "path": "e853733690f24be6aceda5f74c5f4e43ff106a43.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/e853733690f24be6aceda5f74c5f4e43ff106a43.js?meteor_js_resource=true",
+      "size": 747612,
+      "hash": "e853733690f24be6aceda5f74c5f4e43ff106a43"
+    },
+    {
+      "path": "99ccc14536f871ad48c17017a0426f75359a6da2.css",
+      "where": "client",
+      "type": "css",
+      "cacheable": true,
+      "url": "/99ccc14536f871ad48c17017a0426f75359a6da2.css?meteor_css_resource=true",
+      "size": 202085,
+      "hash": "99ccc14536f871ad48c17017a0426f75359a6da2"
+    },
+    {
+      "path": "packages/meteoric_ionicons-sass/fonts/ionicons.eot",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/meteoric_ionicons-sass/fonts/ionicons.eot",
+      "size": 121036,
+      "hash": "72b24f245d6746f63000100742da9406ef850b01"
+    },
+    {
+      "path": "packages/meteoric_ionicons-sass/fonts/ionicons.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/meteoric_ionicons-sass/fonts/ionicons.svg",
+      "size": 334283,
+      "hash": "aa56b884945b32444dbcb649852c4a5a2b2d7aff"
+    },
+    {
+      "path": "packages/meteoric_ionicons-sass/fonts/ionicons.ttf",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/meteoric_ionicons-sass/fonts/ionicons.ttf",
+      "size": 188724,
+      "hash": "a7f729edc4624182c4274b40ec83f524459978ed"
+    },
+    {
+      "path": "packages/meteoric_ionicons-sass/fonts/ionicons.woff",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/meteoric_ionicons-sass/fonts/ionicons.woff",
+      "size": 68060,
+      "hash": "9ba4bf64c6450f6726dc6542965e46db554f3290"
+    },
+    {
+      "path": "app/background.jpg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/background.jpg",
+      "size": 145996,
+      "hash": "115cbed0cdb333171ec2739bc9e8293a1cacbcc2"
+    },
+    {
+      "path": "app/backgroundwallpaper.jpg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/backgroundwallpaper.jpg",
+      "size": 140530,
+      "hash": "fd342f6b3efb3e21f7762390a7b14a57d92d7509"
+    },
+    {
+      "path": "app/placeholder.png",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/placeholder.png",
+      "size": 4648,
+      "hash": "e80496f2719e294dcd206d98ba7098b24eff98d3"
+    },
+    {
+      "path": "app/shisha.png",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/shisha.png",
+      "size": 67757,
+      "hash": "82ffbb739fe5f84ed378cf6765097a94f6c16c4f"
+    },
+    {
+      "path": "head.html",
+      "where": "internal",
+      "type": "head",
+      "hash": "0ef5374c6cb04b760218f6c1ed53035d1b64f61a"
+    }
+  ]
+}

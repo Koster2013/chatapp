@@ -14,6 +14,9 @@ if (!Meteor.isCordova) {
             var location = e.target.locationname.value;
             var username = new Meteor.Collection.ObjectID().valueOf();
 
+            // kein doppeltes login..
+            e.target.username.value ="";
+
             if (profileUsername.length < 3) {
                 toastr.error("Benutzername darf nicht kleiner als 3 Zeichen sein");
                 return false;

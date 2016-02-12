@@ -8,6 +8,9 @@ if (Meteor.isCordova) {
             var profileUsername = e.target.username.value;
             var password = "test";
             var username = new Meteor.Collection.ObjectID().valueOf();
+
+            e.target.username.value ="";
+
             if ( profileUsername.length < 3 ){
                 toastr.error("Benutzername darf nicht kleiner als 3 Zeichen sein");
                 return false;
