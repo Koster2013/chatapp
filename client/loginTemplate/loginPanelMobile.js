@@ -57,6 +57,7 @@ if (Meteor.isCordova) {
 
     Template.loginPanel.helpers({
         'wlanConnected': function (e) {
+            console.log(Session)
             if (Session.get("wlanConnected") == true) {
                 return "";
             } else {

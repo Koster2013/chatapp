@@ -1,5 +1,5 @@
 App.info({
-  name: 'LocaChat',
+  name: 'LoMa Chat',
   description: 'Location based Chat',
   author: 'Erdem Guengoer and Marc Koster',
   email: 'erdemguengoer@googlemail.com',
@@ -9,37 +9,37 @@ App.info({
 
 App.icons({
   // iOS
-  'iphone': 'resources/icons/icon-60x60.png',
-  'iphone_2x': 'resources/icons/icon-60x60@2x.png',
-  'ipad': 'resources/icons/icon-76x76.png',
-  'ipad_2x': 'resources/icons/icon-76x76@2x.png',
+  'iphone': 'res/icons/hdpi/ic_launcher.png',
+  'iphone_2x': 'res/icons/xhdpi/ic_launcher.png',
+  'ipad': 'res/icons/xhdpi/ic_launcher.png',
+  'ipad_2x': 'res/icons/xxhdpi/ic_launcher.png',
 
   // Android
-  'android_ldpi': 'resources/icons/icon-36x36.png',
-  'android_mdpi': 'resources/icons/icon-48x48.png',
-  'android_hdpi': 'resources/icons/icon-72x72.png',
-  'android_xhdpi': 'resources/icons/icon-96x96.png'
+  'android_ldpi': 'res/icons/mdpi/ic_launcher.png',
+  'android_mdpi': 'res/icons/mdpi/ic_launcher.png',
+  'android_hdpi': 'res/icons/hdpi/ic_launcher.png',
+  'android_xhdpi': 'res/icons/xhdpi/ic_launcher.png'
 });
 
 App.launchScreens({
   // iOS
-  'iphone': 'resources/splash/splash-320x480.png',
-  'iphone_2x': 'resources/splash/splash-320x480@2x.png',
-  'iphone5': 'resources/splash/splash-320x568@2x.png',
-  'ipad_portrait': 'resources/splash/splash-768x1024.png',
-  'ipad_portrait_2x': 'resources/splash/splash-768x1024@2x.png',
-  'ipad_landscape': 'resources/splash/splash-1024x768.png',
-  'ipad_landscape_2x': 'resources/splash/splash-1024x768@2x.png',
+  'iphone': 'res/splash/mdpi/background.png',
+  'iphone_2x': 'res/splash/hdpi/background.png',
+  'iphone5': 'res/splash/hdpi/background.png',
+  'ipad_portrait': 'res/splash/xhdpi/background.png',
+  'ipad_portrait_2x': 'res/splash/xhdpi/background.png',
+  'ipad_landscape': 'res/splash/xxhdpi/background.png',
+  'ipad_landscape_2x': 'res/splash/xxhdpi/background.png',
 
   // Android
-  'android_ldpi_portrait': 'resources/splash/splash-200x320.png',
-  'android_ldpi_landscape': 'resources/splash/splash-320x200.png',
-  'android_mdpi_portrait': 'resources/splash/splash-320x480.png',
-  'android_mdpi_landscape': 'resources/splash/splash-480x320.png',
-  'android_hdpi_portrait': 'resources/splash/splash-480x800.png',
-  'android_hdpi_landscape': 'resources/splash/splash-800x480.png',
-  'android_xhdpi_portrait': 'resources/splash/splash-720x1280.png',
-  'android_xhdpi_landscape': 'resources/splash/splash-1280x720.png'
+  'android_ldpi_portrait': 'res/splash/mdpi/background.png',
+  'android_ldpi_landscape': 'res/splash/mdpi/background.png',
+  'android_mdpi_portrait': 'res/splash/mdpi/background.png',
+  'android_mdpi_landscape': 'res/splash/mdpi/background.png',
+  'android_hdpi_portrait': 'res/splash/hdpi/background.png',
+  'android_hdpi_landscape': 'res/splash/hdpi/background.png',
+  'android_xhdpi_portrait': 'res/splash/xhdpi/background.png',
+  'android_xhdpi_landscape': 'res/splash/xhdpi/background.png'
 });
 
 App.setPreference('StatusBarOverlaysWebView', 'false');

@@ -1,8 +1,9 @@
 _sendMessage = function (roomname) {
     var el = document.getElementById("msg");
     var currentLocation = Session.get("location");
-    console.log(el.value.length)
     if (el.value.length > 0) {
+        var actualUserId = Meteor.user()._id;
+        Meteor.call("serverNotification",actualUserId);
         Messages.insert({
             username: Meteor.user().username,
             msg: el.value,
