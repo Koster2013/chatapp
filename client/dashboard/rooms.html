@@ -1,8 +1,10 @@
 <template name="rooms">
     <div class="list">
         {{#each rooms}}
-            <a id="room" class="item" href="dashboard/{{roomname}}">
-                {{roomnameFormated}} - Messages ( {{ roomMessages }} )
+            <a id="room" class="item item-thumbnail-left" href="dashboard/{{roomname}}">
+                <img src={{roomImage}}>
+                <h2> {{roomnameFormated}}   <span class="badge badge-assertive">{{ roomMessages }}</span> </h2>
+                <p></p><!--TODO letzte Message auselsen -->
             </a>
         {{/each}}
     </div>
