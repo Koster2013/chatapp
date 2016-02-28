@@ -38,8 +38,8 @@ App.launchScreens({
   'android_mdpi_landscape': 'res/splash/mdpi/background.png',
   'android_hdpi_portrait': 'res/splash/hdpi/background.png',
   'android_hdpi_landscape': 'res/splash/hdpi/background.png',
-  'android_xhdpi_portrait': 'res/splash/xhdpi/background.png',
-  'android_xhdpi_landscape': 'res/splash/xhdpi/background.png'
+  'android_xhdpi_portrait': 'res/splash/xxxhdpi/background.png',
+  'android_xhdpi_landscape': 'res/splash/xxxhdpi/background.png'
 });
 
 App.setPreference('StatusBarOverlaysWebView', 'false');
