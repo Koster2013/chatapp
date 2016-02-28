@@ -78,11 +78,11 @@ _createAndLoginUser = function (username, password, profileUsername, table, loca
 if (Meteor.userId()) {
     var location = localStorage.getItem("location");
     if (location) {
-        Meteor.subscribe("rooms", "TP-LINK_84D190");
-        Meteor.subscribe("messages", "TP-LINK_84D190");
+        Meteor.subscribe("rooms", location);
+        Meteor.subscribe("messages", location);
         Meteor.subscribe("images");
-        Meteor.subscribe('users', "TP-LINK_84D190");
-        Session.set("location", "TP-LINK_84D190");
+        Meteor.subscribe('users', location);
+        Session.set("location", location);
     }
 }
 _meteorSubscribe = function (location) {
@@ -92,7 +92,6 @@ _meteorSubscribe = function (location) {
     Meteor.subscribe('users', location);
     Session.set("location", location);
     localStorage.setItem("location", location);
-
 }
 
 _checkWlanMobile = function (callback) {
@@ -119,4 +118,25 @@ _checkWlanMobile = function (callback) {
             });
         }
     });
+};
+
+_checkWlanSendMessage = function () {
+    var location = Session.get("location");
+    var networkState = navigator.connection.type;
+    if (networkState == "none") {
+        Session.set("wlanConnected", false);
+    }
+    if (networkState == "wifi") {
+        WifiWizard.getCurrentSSID(function (success) {
+            var ssid = success.replace(/"/g, "").trim();
+            if (ssid == location) {
+                Session.set("wlanConnected", true);
+            } else {
+                Session.set("wlanConnected", false);
+            }
+        }, function (error) {
+            Session.set("wlanConnected", false);
+            console.log(error)
+        });
+    }
 };

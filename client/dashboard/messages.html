@@ -2,7 +2,7 @@
     {{#ionBody}}
         {{#ionSideMenuContainer}}
             {{#ionSideMenu side="right"}}
-                <div class="bar bar-header bar-dark">
+                <div class="bar bar-header bar-positive">
                     <h1 class="title">User</h1>
                 </div>
                 <div class="content has-header">
@@ -11,9 +11,12 @@
             {{/ionSideMenu}}
             {{#ionSideMenuContent}}
                 <div class="bar bar-header bar-positive" style="position: fixed; overflow-y: hidden">
-                    <a class="button icon ion-arrow-left-b" href="/dashboard"></a>
+                    <a class="button button-positive icon ion-arrow-left-b" href="/dashboard"></a>
 
                     <h1 class="title">{{roomnameFormated}}</h1>
+
+                    <div class="button button-positive icon ion-ios-circle-filled" > {{connectedWlan}}</div>
+
                 </div>
 
                 <div style="padding-top: 40px;" id="messages1">
@@ -34,10 +37,10 @@
                 </div>
 
                 <div class="bar bar-footer  bar-positive" style="position: fixed; overflow-y: hidden">
-                    <label class="item item-input">
+                    <label class="item item-input input-message">
                         <input type="text" id="msg" placeholder="Message" required="required"/>
                     </label>
-                    <button class="button button" id="sendMsg" style="width: 50%;">Send</button>
+                    <button class="button button-positive" id="sendMsg" style="width: 50%;">Send</button>
                 </div>
             {{/ionSideMenuContent}}
         {{/ionSideMenuContainer}}

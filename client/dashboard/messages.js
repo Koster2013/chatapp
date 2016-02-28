@@ -33,20 +33,47 @@ Template.messages.helpers({
     },
     table: function () {
         return Meteor.users.findOne({username: this.username}).profile.table;
-    }
-});
-
-Template.messages.events({
-    'click #sendMsg': function (e) {
-        _sendMessage(this.roomname);
     },
-    'keyup #msg': function (e) {
-        if (e.type == "keyup" && e.which == 13) {
-            _sendMessage(this.roomname);
-        }
+   connectedWlan: function () {
+        return Session.get("wlanConnected");
     }
+
 });
 
+if (!Meteor.isCordova) {
+    Template.messages.events({
+        'click #sendMsg': function (e) {
+            _sendMessage(this.roomname);
+        },
+        'keyup #msg': function (e) {
+            if (e.type == "keyup" && e.which == 13) {
+                _sendMessage(this.roomname);
+            }
+        }
+    });
+}
+
+if (Meteor.isCordova) {
+    Template.messages.events({
+        'click #sendMsg': function (e) {
+            _checkWlanSendMessage();
+            if (Session.get("wlanConnected") == true) {
+                _sendMessage(this.roomname);
+            } else {
+                toastr.warning("Bitte verbinden Sie sich mit dem WLAN!")
+            }
+        },
+        'keyup #msg': function (e) {
+            if (e.type == "keyup" && e.which == 13) {
+                if (Session.get("wlanConnected") == true) {
+                    _sendMessage(this.roomname);
+                } else {
+                    toastr.warning("Bitte verbinden Sie sich mit dem WLAN!")
+                }
+            }
+        }
+    });
+}
 
 Template.messages.rendered = function () {
     IonSideMenu.snapper.settings({disable: 'left'});

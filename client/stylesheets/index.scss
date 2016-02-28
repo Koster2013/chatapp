@@ -4,12 +4,22 @@
 
 $primary-color: #387ef5;
 
+$black-color: black;
+$black-border: lighten($black-color, 25%);
 
+input, button , a {
+  font-family: monospace;
+}
+
+button{
+  font-weight: 800;
+}
+
+#sendMsg{
+  font-weight: 800;
+}
 .menu-content {
-  background-image: url('/backgroundwallpaper.jpg');
-  background-repeat:no-repeat;
-  background-size:cover;
-  background-position:center;
+  background-image: url('/backgroundwallpaper.png');
   padding-bottom: 40px;
 }
 
@@ -25,11 +35,12 @@ $primary-color: #387ef5;
 }
 
 .button-positive {
-  background-color: $primary-color !important;
+  background-color: $black-color !important;
+  border-color: $black-border !important;
 }
 
 .user a {
-  color: $primary-color !important;
+  color: $black-color !important;
   text-decoration: inherit;
 }
 
@@ -92,4 +103,21 @@ $primary-color: #387ef5;
 
 .menu-content {
   overflow-y: auto;
+}
+
+.bar.bar-positive {
+  font-weight: 800;
+  font-family: monospace;
+  border-color: $black-color;
+  background-color: $black-color;
+  color: #fff;
+}
+
+.item {
+  background-color: transparent !important;
+  border-color: $black-border !important;
+}
+
+.input-message {
+  background-color: #ffffff !important;
 }
