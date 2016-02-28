@@ -2,8 +2,31 @@ _sendMessage = function (roomname) {
     var el = document.getElementById("msg");
     var currentLocation = Session.get("location");
     if (el.value.length > 0) {
-        var actualUserId = Meteor.user()._id;
-        Meteor.call("serverNotification",actualUserId);
+        var actualSenderUserID = Meteor.user()._id;
+        var actualTargetUser = "";
+        var actualRooms = Rooms.find({"users.username": Meteor.user().username}).fetch()
+        var actualRoom = "";
+
+        for (var i = 0; i < actualRooms.length; i++) {
+            if (actualRooms[i].roomname === roomname) {
+                actualRoom = actualRooms[i];
+            }
+        }
+
+        var actualRoomUserIdFirst = Meteor.users.findOne({username: actualRoom.users[0].username})._id;
+        var actualRoomUserIdLast = Meteor.users.findOne({username: actualRoom.users[1].username})._id;
+
+        if (actualSenderUserID === actualRoomUserIdFirst) {
+            actualTargetUser = actualRoomUserIdLast;
+        }
+        if (actualSenderUserID === actualRoomUserIdLast) {
+            actualTargetUser = actualRoomUserIdFirst;
+        }
+
+        if (roomname != "mainroom") {
+            var msg = el.value;
+            Meteor.call("serverNotification", actualTargetUser, msg);
+        }
         Messages.insert({
             username: Meteor.user().username,
             msg: el.value,
@@ -52,7 +75,7 @@ _createAndLoginUser = function (username, password, profileUsername, table, loca
         }
     });
 };
-if (Meteor.userId()){
+if (Meteor.userId()) {
     var location = localStorage.getItem("location");
     if (location) {
         Meteor.subscribe("rooms", "TP-LINK_84D190");

@@ -32,30 +32,21 @@ if (Meteor.isServer) {
                 }
             });
         },
-        serverNotification: function (actualUserId) {
-            console.log('actualUserId: ' + actualUserId)
-            var last = NotificationHistory.findOne({}, {sort: {addedAt: -1}});
-            var badge = 1
-            if (last != null) {
-                badge = last.badge + 1;
-            }
-
+        serverNotification: function (actualTargetUser, msg) {
             NotificationHistory.insert({
-                badge: badge,
                 addedAt: new Date()
             }, function (error, result) {
                 if (!error) {
                     Push.send({
                         from: 'push',
                         title: 'LoMa Chat',
-                        text: 'Du hast eine neue Nachricht',
-                        badge: badge,
+                        text: msg,
                         payload: {
                             title: 'LoMa Chat',
                             historyId: result
                         },
                         query: {
-                            //userId: actualUserId
+                            userId: actualTargetUser,
                         }
                     });
                 }
