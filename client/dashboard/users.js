@@ -5,11 +5,12 @@ Template.users.helpers({
     users: function () {
         var tableSelected = Session.get("tableSelected");
         if (tableSelected == "all") {
-            return Meteor.users.find({"profile.rooms.roomname": this.roomname, "profile.location": this.location});
+            return Meteor.users.find({"profile.rooms.roomname": this.roomname, "profile.location": this.location, "profile.online": true});
         } else {
             return Meteor.users.find({
                 "profile.rooms.roomname": this.roomname,
                 "profile.location": this.location,
+                "profile.online": true,
                 "profile.table": tableSelected
             });
         }
