@@ -96,3 +96,24 @@ _checkWlanMobile = function (callback) {
         }
     });
 };
+
+_checkWlanSendMessage = function () {
+    var location = Session.get("location");
+    var networkState = navigator.connection.type;
+    if (networkState == "none") {
+        Session.set("wlanConnected", false);
+    }
+    if (networkState == "wifi") {
+        WifiWizard.getCurrentSSID(function (success) {
+            var ssid = success.replace(/"/g, "").trim();
+            if (ssid == location) {
+                Session.set("wlanConnected", true);
+            } else {
+                Session.set("wlanConnected", false);
+            }
+        }, function (error) {
+            Session.set("wlanConnected", false);
+            console.log(error)
+        });
+    }
+};
