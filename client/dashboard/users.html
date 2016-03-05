@@ -1,6 +1,4 @@
-
 <template name="users">
-
 
 
     {{#if isMainRoom }}
@@ -23,23 +21,26 @@
     {{/if}}
 
     <div class="list">
-      {{#each users}}
-        {{#if thatsMe }}
-            <div></div>
-        {{else}}
-            <div class="item item-avatar item-icon-right user" style={{status}}>
+        {{#each users}}
+            {{#if thatsMe }}
+                <div></div>
+            {{else}}
+                <div class="item item-avatar item-icon-right user" style={{status}}>
 
-                <img src={{avatar}}>
-                <a href="/profile/{{_id}}" > <strong >{{profile.profilename}}</strong> </a>
-                <a id="createPrivateChat" href="#">
-                    <i class="icon ion-chatboxes"></i>
-                </a>
-                <br>
-                (
-                <small> Tisch: {{profile.table}}</small>
-                )
-            </div>
-        {{/if}}
-      {{/each}}
+                    <img src={{avatar}}>
+                    <a href="/profile/{{_id}}"> <strong>{{profile.profilename}}</strong> </a>
+
+                        <a id="createPrivateChat" href="#">
+                            <i style="padding-top: 30px;" class="icon ion-chatboxes"></i>
+                        </a>
+                        <a id="ignoreUser" href="#" >
+                            <i style="padding-right: 40px; padding-top: 30px;" class="icon ion-close-round"></i>
+                        </a>
+                    <br>
+                    <span>( <small> Tisch: {{profile.table}}</small> )</span>
+
+                </div>
+            {{/if}}
+        {{/each}}
     </div>
 </template>
