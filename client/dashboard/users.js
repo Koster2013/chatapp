@@ -5,7 +5,11 @@ Template.users.helpers({
     users: function () {
         var tableSelected = Session.get("tableSelected");
         if (tableSelected == "all") {
-            return Meteor.users.find({"profile.rooms.roomname": this.roomname, "profile.location": this.location, "profile.online": true});
+            return Meteor.users.find({
+                "profile.rooms.roomname": this.roomname,
+                "profile.location": this.location,
+                "profile.online": true
+            });
         } else {
             return Meteor.users.find({
                 "profile.rooms.roomname": this.roomname,
@@ -27,7 +31,10 @@ Template.users.helpers({
         var tables = [
             {number: "all"}
         ]
-        var users = Meteor.users.find({"profile.rooms.roomname": this.roomname, "profile.location": this.location}).fetch();
+        var users = Meteor.users.find({
+            "profile.rooms.roomname": this.roomname,
+            "profile.location": this.location
+        }).fetch();
         users.forEach(function (user) {
             tables.push({number: user.profile.table});
         });
@@ -52,7 +59,17 @@ Template.users.events({
             Router.go('/dashboard/' + result);
         });
     },
-
+    'click #ignoreUser': function (e) {
+        var ignoreUser = Session.get("ignoreUser");
+        if ($.inArray(this.username, ignoreUser) >= 0) {
+            Session.set("ignoreUser", _.without(ignoreUser, this.username));
+            return;
+        } else {
+            ignoreUser.push(this.username);
+            Session.set("ignoreUser", ignoreUser);
+            return;
+        }
+    },
     "change #tablePicker": function (evt) {
         var newValue = $(evt.target).val();
         Session.set("tableSelected", newValue);

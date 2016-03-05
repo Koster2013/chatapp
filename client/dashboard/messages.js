@@ -1,6 +1,7 @@
 Template.messages.helpers({
     messages: function () {
-        return Messages.find({room: this.roomname}, {sort: {ts: -1}});
+        //"9fbff3e1f61208a59a69d6cf" , "56fb548a580f1ab4cd711a80"
+        return Messages.find({room: this.roomname , username: {$nin:  Session.get("ignoreUser") } } , {sort: {ts: -1}});
     },
     timestamp: function () {
         return moment(this.ts).format('HH:ss');

@@ -24,6 +24,7 @@ if (Meteor.isCordova) {
                         return false;
                     } else {
                         if (Session.get("location") != undefined ){
+                            Session.set("ignoreUser", []);
                             _createAndLoginUser(username, password, profileUsername, table, Session.get("location"))
                         }
                         return false;

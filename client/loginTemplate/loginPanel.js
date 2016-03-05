@@ -26,6 +26,7 @@ if (!Meteor.isCordova) {
                 var currentLocation = Location.find({}).fetch();
                 currentLocation.forEach(function (key) {
                     if (location == key.wlanssid) {
+                        Session.set("ignoreUser", []);
                         return _createAndLoginUser(username, password, profileUsername, table, location);
                     } else {
                         return false;

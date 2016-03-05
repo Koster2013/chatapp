@@ -29,16 +29,21 @@
 
                     <img src={{avatar}}>
                     <a href="/profile/{{_id}}"> <strong>{{profile.profilename}}</strong> </a>
-
-                        <a id="createPrivateChat" href="#">
-                            <i style="padding-top: 30px;" class="icon ion-chatboxes"></i>
-                        </a>
-                        <a id="ignoreUser" href="#" >
-                            <i style="padding-right: 40px; padding-top: 30px;" class="icon ion-close-round"></i>
-                        </a>
-                    <br>
-                    <span>( <small> Tisch: {{profile.table}}</small> )</span>
-
+                    <div class="row" style="padding: 0px;">
+                        <div class="col col-50" style="padding: 0px;">
+                                <span><small> Tisch: {{profile.table}}</small></span>
+                        </div>
+                        <div class="col">
+                                <a id="createPrivateChat" href="#">
+                                    <i class="icon ion-chatboxes"></i>
+                                </a>
+                        </div>
+                        <div class="col">
+                                <a id="ignoreUser" href="#">
+                                    <i class="icon ion-close-round"></i>
+                                </a>
+                        </div>
+                    </div>
                 </div>
             {{/if}}
         {{/each}}
