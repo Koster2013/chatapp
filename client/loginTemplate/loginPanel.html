@@ -8,7 +8,7 @@
 
                         <div class="list list-inset" style="margin-top: 0px;">
                             <div style="text-align: center;padding-bottom: 10px;">
-                                <img class="full-image chat-images" src="/sayhello.png" >
+                                <img class="full-image chat-images" src="/sayhello.png">
                             </div>
 
                             <label class="item item-input">
@@ -26,8 +26,11 @@
                                 <label class="item item-input">
                                     <input name="locationname" type="text" placeholder="lokal" value="TP-LINK_84D190">
                                 </label>
+
                                 <div class="padding">
-                                    <button type="submit" class="button button-block button-positive activated" {{wlanConnected}}>Sign In
+                                    <button type="submit"
+                                            class="button button-block button-positive activated" {{wlanConnected}}>Sign
+                                        In
                                     </button>
                                 </div>
 
@@ -36,10 +39,19 @@
                             {{#if isCordova }}
 
                                 <div class="padding">
-                                    <button type="submit" class="button button-block button-positive activated"  {{wlanConnected}}  >Barcode scan
+                                    <button type="submit"
+                                            class="button button-block button-positive activated"  {{wlanConnected}}  >
+                                        Barcode scan
                                     </button>
-                                    <a class="button button-block button-positive activated"  id="checkWlan"  >Check Wlan
-                                    </a>
+                                    <div id="textDiv" style="padding-top: 10px; margin-left: auto; margin-right: auto; width: 8em">
+                                        <span id="successFullConnected" class="assertive">
+                                            Nicht Verbunden</span>
+                                    </div>
+                                    <!--<a style="visibility: hidden" class="button button-block button-positive activated"-->
+                                    <!--id="checkWlan">Check Wlan-->
+                                    <!--</a>-->
+
+
                                 </div>
 
 

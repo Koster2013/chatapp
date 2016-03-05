@@ -108,8 +108,6 @@ _checkWlanMobile = function (callback) {
                     if (ssid == key.wlanssid) {
                         Session.set("location", key.wlanssid);
                         callback(true);
-                    } else {
-                        callback(false);
                     }
                 });
             }, function (error) {
@@ -140,3 +138,28 @@ _checkWlanSendMessage = function () {
         });
     }
 };
+
+_onDeviceReady = function () {
+
+    _checkWlanMobile(function (result) {
+        if (result == true) {
+            Session.set("wlanConnected", result);
+
+            var textDiv = document.getElementById('textDiv');
+            var successFullConnected = document.getElementById('successFullConnected')
+
+            if (successFullConnected && textDiv) {
+                successFullConnected.style.visibility = 'visible';
+                successFullConnected.style.color = 'green';
+                successFullConnected.innerHTML = 'Verbunden';
+                textDiv.style.width = '5em';
+            }
+        } else {
+            IonPopup.alert({
+                title: "Wlan Benachrichtigung!",
+                template: "Die Anwendung funktioniert nur im lokal WLAN",
+                okText: "Ok"
+            });
+        }
+    })
+}
