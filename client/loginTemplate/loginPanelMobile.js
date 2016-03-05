@@ -9,9 +9,9 @@ if (Meteor.isCordova) {
             var password = "test";
             var username = new Meteor.Collection.ObjectID().valueOf();
 
-            e.target.username.value ="";
+            e.target.username.value = "";
 
-            if ( profileUsername.length < 3 ){
+            if (profileUsername.length < 3) {
                 toastr.error("Benutzername darf nicht kleiner als 3 Zeichen sein");
                 return false;
             }
@@ -23,7 +23,7 @@ if (Meteor.isCordova) {
                         IonPopup.alert({title: 'Fehlerhafter Barcode', template: 'Das ist kein gültiger Tischcode!'});
                         return false;
                     } else {
-                        if (Session.get("location") != undefined ){
+                        if (Session.get("location") != undefined) {
                             Session.set("ignoreUser", []);
                             _createAndLoginUser(username, password, profileUsername, table, Session.get("location"))
                         }
@@ -36,28 +36,12 @@ if (Meteor.isCordova) {
                 }
             );
             return false;
-        },
-
-        'click #checkWlan': function (e) {
-            _checkWlanMobile(function (result) {
-                if (result == true) {
-                    Session.set("wlanConnected", result);
-                }
-                else {
-                    IonPopup.alert({
-                        title: "Wlan Benachrichtigung!",
-                        template: "Die Anwendung funktioniert nur im lokal WLAN",
-                        okText: "Ok"
-                    });
-                }
-            });
         }
-
-
     });
 
     Template.loginPanel.helpers({
         'wlanConnected': function (e) {
+            _onDeviceReady();
             console.log(Session)
             if (Session.get("wlanConnected") == true) {
                 return "";
