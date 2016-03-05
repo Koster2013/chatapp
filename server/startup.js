@@ -28,10 +28,20 @@ if (Meteor.isServer) {
                     location: obj.location,
                     online: true,
                     profilename: obj.profileUsername,
-                    rooms: [{roomname: "mainroom"}]
+                    rooms: [{roomname: "mainroom"}],
+                    ignoreList: []
                 }
             });
         },
+
+        addIgnoreUser: function (myuser, ignoreusername) {
+            Meteor.users.update(myuser._id, { $addToSet: { "profile.ignoreList":  ignoreusername } });
+        },
+
+        removeIgnoreUser: function (myuser, ignoreusername) {
+            Meteor.users.update(myuser._id, { $pull: { "profile.ignoreList":   ignoreusername } });
+        },
+
         serverNotification: function (actualTargetUser, msg) {
             NotificationHistory.insert({
                 addedAt: new Date()

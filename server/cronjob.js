@@ -16,5 +16,4 @@ SyncedCron.add({
         Location.insert({locationname: "koster", wlanssid: "TP-LINK_84D190" });
         Rooms.insert({roomname: "mainroom", location: "TP-LINK_84D190"});
         return true;
-    }
-});
+    }});

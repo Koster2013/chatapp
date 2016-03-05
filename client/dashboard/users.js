@@ -60,13 +60,13 @@ Template.users.events({
         });
     },
     'click #ignoreUser': function (e) {
-        var ignoreUser = Session.get("ignoreUser");
+        var ignoreUser = Meteor.users.findOne({_id: Meteor.user()._id}).profile.ignoreList;
         if ($.inArray(this.username, ignoreUser) >= 0) {
-            Session.set("ignoreUser", _.without(ignoreUser, this.username));
+            //remove from Ignore List
+            Meteor.call("removeIgnoreUser", Meteor.user() , this.username);
             return;
         } else {
-            ignoreUser.push(this.username);
-            Session.set("ignoreUser", ignoreUser);
+            Meteor.call("addIgnoreUser", Meteor.user() , this.username);
             return;
         }
     },

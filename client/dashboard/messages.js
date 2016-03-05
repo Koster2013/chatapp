@@ -1,7 +1,8 @@
 Template.messages.helpers({
     messages: function () {
         //"9fbff3e1f61208a59a69d6cf" , "56fb548a580f1ab4cd711a80"
-        return Messages.find({room: this.roomname , username: {$nin:  Session.get("ignoreUser") } } , {sort: {ts: -1}});
+        var ignoreList = Meteor.users.findOne({_id: Meteor.user()._id}).profile.ignoreList;
+        return Messages.find({room: this.roomname , username: {$nin:  ignoreList } } , {sort: {ts: -1}});
     },
     timestamp: function () {
         return moment(this.ts).format('HH:ss');
