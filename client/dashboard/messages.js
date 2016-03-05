@@ -37,7 +37,7 @@ Template.messages.helpers({
         return Meteor.users.findOne({username: this.username}).profile.table;
     },
    connectedWlan: function () {
-        return Session.get("wlanConnected") ? "color: red !important;" : "color: green !important;";
+        return Session.get("wlanConnected") ? "color: green !important;"  : "color: red !important;" ;
     }
 
 });
