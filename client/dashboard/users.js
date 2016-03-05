@@ -4,7 +4,7 @@ Template.users.helpers({
     },
     users: function () {
         var tableSelected = Session.get("tableSelected");
-        if (tableSelected == "all") {
+        if (tableSelected == "alle") {
             return Meteor.users.find({
                 "profile.rooms.roomname": this.roomname,
                 "profile.location": this.location,
@@ -29,7 +29,7 @@ Template.users.helpers({
     },
     tables: function () {
         var tables = [
-            {number: "all"}
+            {number: "alle"}
         ]
         var users = Meteor.users.find({
             "profile.rooms.roomname": this.roomname,
