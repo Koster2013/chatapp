@@ -4,7 +4,7 @@ Template.rooms.helpers({
     },
     roomnameFormated: function () {
         if (this.roomname == "mainroom") {
-            return "mainroom";
+            return "Lokal Chat";
         }
         if (this.users[0].profilename == Meteor.user().profile.profilename) {
             return "Chat mit: " + this.users[1].profilename;
@@ -16,6 +16,14 @@ Template.rooms.helpers({
     },
     roomMessages: function () {
         return Messages.find({room: this.roomname}).fetch().length;
+    },
+    lastMessage: function () {
+        var test = Messages.find({room: this.roomname},  {sort: {ts: -1}}, {limit: 1}).fetch()[0].msg;
+        return test;
+    },
+    lastts: function () {
+        var test = Messages.find({room: this.roomname},  {sort: {ts: -1}}, {limit: 1}).fetch()[0].ts;
+        return moment(test).format('HH:ss');
     },
     onIgnore: function () {
         var ignoreUserList = Meteor.users.findOne({_id: Meteor.user()._id}).profile.ignoreList;

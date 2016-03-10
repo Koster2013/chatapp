@@ -9,8 +9,8 @@
             <a id="room" class="item item-thumbnail-left" href="dashboard/{{roomname}}">
                 <img src={{roomImage}}>
                 <h2> {{roomnameFormated}}   <span class="badge badge-assertive">{{ roomMessages }}</span> </h2>
-                <br>
-                <p>Hallo welt was geht ab ewfefweef erferf refererfer e ergeerege ege</p><!--TODO letzte Message auselsen -->
+                <p>{{lastts}}</p>
+                <p>{{lastMessage}}</p>
             </a>
             {{/if}}
         {{/each}}

@@ -12,7 +12,7 @@ Template.messages.helpers({
     },
     roomnameFormated: function () {
         if (this.roomname == "mainroom") {
-            return "mainroom";
+            return "Lokal Chat";
         }
         if (this.users[0].profilename == Meteor.user().profile.profilename) {
             return "Chat mit: " + this.users[1].profilename;

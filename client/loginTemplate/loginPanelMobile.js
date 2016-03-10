@@ -12,7 +12,7 @@ if (Meteor.isCordova) {
             e.target.username.value = "";
 
             if (profileUsername.length < 3) {
-                toastr.error("Benutzername darf nicht kleiner als 3 Zeichen sein");
+                toastr.error("Benutzername darf nicht kleiner als 3 Zeichen sein!");
                 return false;
             }
 
@@ -20,7 +20,7 @@ if (Meteor.isCordova) {
                 function (result) {
                     var table = result.text;
                     if (table == "" || table == undefined || table > 50) {
-                        IonPopup.alert({title: 'Fehlerhafter Barcode', template: 'Das ist kein gültiger Tischcode!'});
+                        toastr.error('Fehlerhafter Barcode, das ist kein gültiger Tischcode!');
                         return false;
                     } else {
                         if (Session.get("location") != undefined) {
@@ -30,7 +30,7 @@ if (Meteor.isCordova) {
                     }
                 },
                 function (error) {
-                    IonPopup.alert({title: 'Fehlerhafter Barcode', template: 'Das ist kein gültiger Tischcode!'});
+                    toastr.error('Fehlerhafter Barcode, das ist kein gültiger Tischcode!');
                     navigator.app.exitApp();
                 }
             );

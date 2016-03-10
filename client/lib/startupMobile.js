@@ -3,8 +3,6 @@ if (Meteor.isCordova) {
 
         Push.addListener('message', function (notification) {
             // Called on every message
-            console.log(JSON.stringify(notification))
-
             function alertDismissed() {
                 NotificationHistory.update({_id: notification.payload.historyId}, {
                     $set: {
@@ -36,11 +34,7 @@ if (Meteor.isCordova) {
                         textDiv.style.width = '5em';
                     }
                 } else {
-                    IonPopup.alert({
-                        title: "Wlan Benachrichtigung!",
-                        template: "Die Anwendung funktioniert nur im lokal WLAN",
-                        okText: "Ok"
-                    });
+                    toastr.warning('Wlan Benachrichtigung, die Anwendung funktioniert nur im lokal WLAN!');
                 }
             });
             document.addEventListener("backbutton", function (e) {

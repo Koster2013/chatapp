@@ -2,7 +2,22 @@
 @import 'meteoric_ionic-sass/ionic';
 @import 'meteoric_ionicons-sass/ionicons';
 
-$primary-color: #387ef5;
+
+/*
+@font-face { font-family: 'chat';
+  src: url('/OldStandard-Regular.ttf') format('truetype'); }
+@font-face { font-family: 'chat';
+  src: url('/OldStandard-Italic.ttf') format('truetype');
+  font-style: italic; }
+@font-face { font-family: 'chat-bold';
+  src: url('/OldStandard-Bold.ttf') format('truetype');
+  font-weight: bold; }
+*/
+
+$assertive :#393197;
+$primary-color: #393197;
+$secondary-color: #A6A8A9;
+// 393197
 
 $black-color: black;
 $black-border: lighten($black-color, 25%);
@@ -66,12 +81,12 @@ button{
   -o-border-radius: 8px 8px 8px 0px;
   -ms-border-radius: 8px 8px 8px 0px;
   border-radius: 8px 8px 8px 0px;
-  background-color: #65B045;
+  background-color: $secondary-color;
   color: #ffffff;
 }
 
 .bubbledLeft:before {
-  border-bottom: 10px solid #65B045;
+  border-bottom: 10px solid $secondary-color;
   border-left: 9px solid rgba(0, 0, 0, 0);
   position: absolute;
   bottom: 0;
@@ -135,4 +150,69 @@ button{
 
 .statusButton {
   border-color: $black-color !important;
+}
+
+h1, h2 {
+  font-weight: lighter !important;
+  font-family: monospace;
+}
+
+div, small, option, select,button {
+  font-family: monospace;
+}
+
+.header-button {
+  border-color: black !important;
+}
+.ion-arrow-left-b:before {
+  font-size: 32px !important;
+}
+
+#sendMsg {
+  font-weight: lighter !important;
+  color: #ffffff !important;
+  background-color: $assertive !important;
+}
+/*
+$assertive :#393197;
+.button-float{
+  background: $assertive !important;
+  border-color: $assertive !important;
+  color:white !important;
+  z-index: 12 !important;
+  position: absolute !important;
+  bottom: 5px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transition: 0.2s linear !important;
+  transition: 0.2s linear !important;
+  -webkit-transition-property: -webkit-transform, all !important;
+  transition-property: transform, all !important;
+
+}
+
+.button-float:hover{
+  -webkit-transform: translate3d(0, -1px, 0)  !important;
+  transform: translate3d(0, -1px, 0) !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4) !important;
+  background: darken($assertive, 10%) !important;
+}
+
+.footer-trans {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+*/
+#room img {
+  border: 2px solid $assertive !important;
+}
+.full-image {
+  border: 2px solid $assertive !important;
+}
+.item {
+  background-color: transparent !important;
+  border-color: $assertive  !important;
 }

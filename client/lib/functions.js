@@ -37,11 +37,7 @@ _sendMessage = function (roomname) {
         el.value = "";
         el.focus();
     } else {
-        IonPopup.alert({
-            title: 'Message',
-            template: 'Leere Nachricht',
-            okText: 'Ok'
-        });
+        toastr.warning("Ihre Nachricht darf nicht leer sein!");
     }
 };
 
@@ -66,7 +62,6 @@ _createAndLoginUser = function (username, password, profileUsername, table, loca
                 }
                 else {
                     _meteorSubscribe(location);
-                    console.log("User eingeloggt");
                 }
             });
         }

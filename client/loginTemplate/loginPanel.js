@@ -7,15 +7,13 @@ if (!Meteor.isCordova) {
     Template.loginPanel.events({
 
         'submit #createForm': function (e) {
+            e.preventDefault();
 
             var profileUsername = e.target.username.value;
             var password = e.target.password.value;
             var table = e.target.table.value;
             var location = e.target.locationname.value;
             var username = new Meteor.Collection.ObjectID().valueOf();
-
-            // kein doppeltes login..
-            e.target.username.value ="";
 
             if (profileUsername.length < 3) {
                 toastr.error("Benutzername darf nicht kleiner als 3 Zeichen sein");
