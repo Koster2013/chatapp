@@ -209,10 +209,20 @@ $assertive :#393197;
 #room img {
   border: 2px solid $assertive !important;
 }
-.full-image {
+.profile-image {
   border: 2px solid $assertive !important;
 }
 .item {
   background-color: transparent !important;
   border-color: $assertive  !important;
+}
+
+.bar-footer label.item-input{
+  background-color: #ffffff !important;
+}
+#msg {
+  background-color: #ffffff;
+}
+.interaction {
+  padding-left: 10px !important;
 }
