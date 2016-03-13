@@ -12,6 +12,8 @@ if (Meteor.isServer) {                                                 // 1
         if (Rooms.findOne({ roomname: "mainroom" }) == undefined) {    // 4
             Location.insert({ locationname: "erdem", wlanssid: "EasyBox-0B6B28" });
             Rooms.insert({ roomname: "mainroom", location: "EasyBox-0B6B28" });
+            Location.insert({locationname: "erdem-home", wlanssid: "EasyBox-895487"});
+            Rooms.insert({roomname: "mainroom", location: "EasyBox-895487"});
             Location.insert({ locationname: "koster", wlanssid: "TP-LINK_84D190" });
             Rooms.insert({ roomname: "mainroom", location: "TP-LINK_84D190" });
         } else {}                                                      //

@@ -24,14 +24,11 @@ if (Meteor.isCordova) {
                 if (result == true) {
                     Session.set("wlanConnected", result);
 
-                    var textDiv = document.getElementById('textDiv');
                     var successFullConnected = document.getElementById('successFullConnected')
-
-                    if (successFullConnected && textDiv) {
+                    if (successFullConnected) {
                         successFullConnected.style.visibility = 'visible';
                         successFullConnected.style.color = 'green';
                         successFullConnected.innerHTML = 'Verbunden';
-                        textDiv.style.width = '5em';
                     }
                 } else {
                     toastr.warning('Wlan Benachrichtigung, die Anwendung funktioniert nur im lokal WLAN!');
@@ -41,6 +38,11 @@ if (Meteor.isCordova) {
                 navigator.app.exitApp();
             });
         }
+    });
+
+    //Deaktiviert Hot Code Push; Reload beim App start wird ausgeschaltet..
+    Meteor._reload.onMigrate(function () {
+        return [false];
     });
 
 }

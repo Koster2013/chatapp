@@ -131,6 +131,8 @@ _checkWlanSendMessage = function () {
             Session.set("wlanConnected", false);
             console.log(error)
         });
+    }else {
+        Session.set("wlanConnected", false);
     }
 };
 
@@ -140,14 +142,12 @@ _onDeviceReady = function () {
         if (result == true) {
             Session.set("wlanConnected", result);
 
-            var textDiv = document.getElementById('textDiv');
             var successFullConnected = document.getElementById('successFullConnected')
 
-            if (successFullConnected && textDiv) {
+            if (successFullConnected) {
                 successFullConnected.style.visibility = 'visible';
                 successFullConnected.style.color = 'green';
                 successFullConnected.innerHTML = 'Verbunden';
-                textDiv.style.width = '5em';
             }
         } else {
             IonPopup.alert({
