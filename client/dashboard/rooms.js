@@ -18,11 +18,11 @@ Template.rooms.helpers({
         return Messages.find({room: this.roomname}).fetch().length;
     },
     lastMessage: function () {
-        var test = Messages.find({room: this.roomname},  {sort: {ts: -1}}, {limit: 1}).fetch()[0].msg;
+        var test = Messages.find({room: this.roomname}, {sort: {ts: -1}}, {limit: 1}).fetch()[0].msg;
         return test;
     },
     lastts: function () {
-        var test = Messages.find({room: this.roomname},  {sort: {ts: -1}}, {limit: 1}).fetch()[0].ts;
+        var test = Messages.find({room: this.roomname}, {sort: {ts: -1}}, {limit: 1}).fetch()[0].ts;
         return moment(test).format('HH:ss');
     },
     onIgnore: function () {
@@ -40,27 +40,26 @@ Template.rooms.helpers({
             return Meteor.absoluteUrl() + "placeholder.png";
         }
         var result;
-        this.users.forEach(function (user) {
-            if (user.username == Meteor.user().username) {
-                var profileimage = Meteor.user().profile.image;
-                if (profileimage == undefined) {
-                    result = Meteor.absoluteUrl() + "placeholder.png";
-                    return;
-                } else {
-                    result = profileimage;
-                    return;
-                }
+        if (this.users[0].username == Meteor.user().username) {
+            var profileimage = Meteor.users.findOne({username: this.users[1].username}).profile.images;
+            if (profileimage == undefined) {
+                result = Meteor.absoluteUrl() + "placeholder.png";
+                return;
             } else {
-                var profileimage = Meteor.users.findOne({username: user.username}).profile.images;
-                if (profileimage == undefined) {
-                    result = Meteor.absoluteUrl() + "placeholder.png";
-                    return;
-                } else {
-                    result = profileimage;
-                    return;
-                }
+                result = profileimage;
+                return;
             }
-        });
+        }
+        if (this.users[1].username == Meteor.user().username) {
+            var profileimage = Meteor.users.findOne({username: this.users[0].username}).profile.images;
+            if (profileimage == undefined) {
+                result = Meteor.absoluteUrl() + "placeholder.png";
+                return;
+            } else {
+                result = profileimage;
+                return;
+            }
+        }
         return result;
     }
 });
