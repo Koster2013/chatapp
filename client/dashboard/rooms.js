@@ -39,28 +39,22 @@ Template.rooms.helpers({
         if (this.roomname == "mainroom") {
             return Meteor.absoluteUrl() + "placeholder.png";
         }
-        var result;
         if (this.users[0].username == Meteor.user().username) {
-            var profileimage = Meteor.users.findOne({username: this.users[1].username}).profile.images;
+            var profileimage = Meteor.users.findOne({username: this.users[1].username}).profile.image;
             if (profileimage == undefined) {
-                result = Meteor.absoluteUrl() + "placeholder.png";
-                return;
+                return Meteor.absoluteUrl() + "placeholder.png";
             } else {
-                result = profileimage;
-                return;
+                return profileimage;
             }
         }
         if (this.users[1].username == Meteor.user().username) {
-            var profileimage = Meteor.users.findOne({username: this.users[0].username}).profile.images;
+            var profileimage = Meteor.users.findOne({username: this.users[0].username}).profile.image;
             if (profileimage == undefined) {
-                result = Meteor.absoluteUrl() + "placeholder.png";
-                return;
+                return Meteor.absoluteUrl() + "placeholder.png";
             } else {
-                result = profileimage;
-                return;
+                return profileimage;
             }
         }
-        return result;
     }
 });
 
