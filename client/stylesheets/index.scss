@@ -209,6 +209,11 @@ $assertive :#393197;
 #room img {
   border: 2px solid $assertive !important;
 }
+
+#room h2 {
+  white-space: initial !important;
+}
+
 .profile-image {
   border: 2px solid $assertive !important;
 }
