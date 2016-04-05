@@ -2,40 +2,53 @@ _sendMessage = function (roomname) {
     var el = document.getElementById("msg");
     var currentLocation = Session.get("location");
     if (el.value.length > 0) {
-        var actualSenderUserID = Meteor.user()._id;
-        var actualTargetUser = "";
-        var actualRooms = Rooms.find({"users.username": Meteor.user().username}).fetch()
-        var actualRoom = "";
+        if (roomname === "mainroom"){
+            Messages.insert({
+                username: Meteor.user().username,
+                msg: el.value,
+                ts: new Date(),
+                room: roomname,
+                location: currentLocation
+            });
+            el.value = "";
+            el.focus();
+        }else{
+            var actualSenderUserID = Meteor.user()._id;
+            var actualTargetUser = "";
+            var actualRooms = Rooms.find({"users.username": Meteor.user().username}).fetch()
+            var actualRoom = "";
 
-        for (var i = 0; i < actualRooms.length; i++) {
-            if (actualRooms[i].roomname === roomname) {
-                actualRoom = actualRooms[i];
+            for (var i = 0; i < actualRooms.length; i++) {
+                if (actualRooms[i].roomname === roomname) {
+                    actualRoom = actualRooms[i];
+                }
             }
+
+            var actualRoomUserIdFirst = Meteor.users.findOne({username: actualRoom.users[0].username})._id;
+            var actualRoomUserIdLast = Meteor.users.findOne({username: actualRoom.users[1].username})._id;
+
+            if (actualSenderUserID === actualRoomUserIdFirst) {
+                actualTargetUser = actualRoomUserIdLast;
+            }
+            if (actualSenderUserID === actualRoomUserIdLast) {
+                actualTargetUser = actualRoomUserIdFirst;
+            }
+
+            if (roomname != "mainroom") {
+                var msg = el.value;
+                Meteor.call("serverNotification", actualTargetUser, msg);
+            }
+            Messages.insert({
+                username: Meteor.user().username,
+                msg: el.value,
+                ts: new Date(),
+                room: roomname,
+                location: currentLocation
+            });
+            el.value = "";
+            el.focus();
         }
 
-        var actualRoomUserIdFirst = Meteor.users.findOne({username: actualRoom.users[0].username})._id;
-        var actualRoomUserIdLast = Meteor.users.findOne({username: actualRoom.users[1].username})._id;
-
-        if (actualSenderUserID === actualRoomUserIdFirst) {
-            actualTargetUser = actualRoomUserIdLast;
-        }
-        if (actualSenderUserID === actualRoomUserIdLast) {
-            actualTargetUser = actualRoomUserIdFirst;
-        }
-
-        if (roomname != "mainroom") {
-            var msg = el.value;
-            Meteor.call("serverNotification", actualTargetUser, msg);
-        }
-        Messages.insert({
-            username: Meteor.user().username,
-            msg: el.value,
-            ts: new Date(),
-            room: roomname,
-            location: currentLocation
-        });
-        el.value = "";
-        el.focus();
     } else {
         toastr.warning("Ihre Nachricht darf nicht leer sein!");
     }
