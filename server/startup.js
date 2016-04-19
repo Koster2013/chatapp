@@ -9,16 +9,11 @@ if (Meteor.isServer) {
             Rooms.insert({roomname: "mainroom", location: "EasyBox-895487"});
             Location.insert({locationname: "koster", wlanssid: "TP-LINK_84D190"});
             Rooms.insert({roomname: "mainroom", location: "TP-LINK_84D190"});
-Location.insert({locationname: "freewifi", wlanssid: "airfy free WiFi"});
-        Rooms.insert({roomname: "mainroom", location: "airfy free WiFi"});
-        Location.insert({locationname: "scheer", wlanssid: "ScheerTower"});
-        Rooms.insert({roomname: "mainroom", location: "ScheerTower"});
-        } else {
-
+            Location.insert({locationname: "freewifi", wlanssid: "airfy free WiFi"});
+            Rooms.insert({roomname: "mainroom", location: "airfy free WiFi"});
+            Location.insert({locationname: "scheer", wlanssid: "ScheerTower"});
+            Rooms.insert({roomname: "mainroom", location: "ScheerTower"});
         }
-        //Messages.remove({});
-        //Rooms.remove({});
-        //Rooms.insert({roomname: "mainroom"});
     });
 
 
@@ -41,11 +36,11 @@ Location.insert({locationname: "freewifi", wlanssid: "airfy free WiFi"});
         },
 
         addIgnoreUser: function (myuser, ignoreusername) {
-            Meteor.users.update(myuser._id, { $addToSet: { "profile.ignoreList":  ignoreusername } });
+            Meteor.users.update(myuser._id, {$addToSet: {"profile.ignoreList": ignoreusername}});
         },
 
         removeIgnoreUser: function (myuser, ignoreusername) {
-            Meteor.users.update(myuser._id, { $pull: { "profile.ignoreList":   ignoreusername } });
+            Meteor.users.update(myuser._id, {$pull: {"profile.ignoreList": ignoreusername}});
         },
 
         serverNotification: function (actualTargetUser, msg) {
@@ -76,14 +71,4 @@ Location.insert({locationname: "freewifi", wlanssid: "airfy free WiFi"});
             });
         }
     });
-    /*
-     Accounts.validateLoginAttempt(function(info) {
-     var user = info.user;
-
-     if(user.resume == false ) {
-     console.log("test");
-
-     }
-
-     });*/
 }
