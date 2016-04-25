@@ -231,3 +231,9 @@ $assertive :#393197;
 .interaction {
   padding-left: 10px !important;
 }
+
+
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
+  height: 64px;
+  margin-top: -20px;
+}
