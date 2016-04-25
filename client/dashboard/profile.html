@@ -21,14 +21,20 @@
 
                     {{#if thatsMe }}
                         <!--<input type="file" id="myFileInput">-->
+                        {{#if isIOS}}
 
-                        <input type="file" id="myFileInput" accept="image/*" style="display:none;"/>
+                            <input type="file" id="myFileInput" accept="image/*" />
 
-                        <div id="myFileDiv" >
+                        {{else}}
 
-                            <button class="button button-positive  icon ion-ios-upload" style="width:100%;"> Bild hochladen</button>
-                        </div>
+                            <input type="file" id="myFileInput" accept="image/*" style="display:none;"/>
 
+                            <div id="myFileDiv" onclick="$('#myFileInput').click();">
+
+                                <button class="button button-positive  icon ion-ios-upload" style="width:100%;"> Bild hochladen</button>
+                            </div>
+
+                        {{/if}}
                     {{else}}
                         <div></div>
                     {{/if}}

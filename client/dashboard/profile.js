@@ -47,10 +47,6 @@ Template.profile.events({
             }
 
         });
-    },
-
-    'click #myFileDiv': function (event, template) {
-        $('#myFileInput').click();
     }
 
 })
