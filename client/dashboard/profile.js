@@ -19,11 +19,7 @@ Template.profile.events({
             if(file.size < 4000000){
                 Images.insert(file, function (err, fileObj) {
                     if (err) {
-                        IonPopup.alert({
-                            title: 'Bild upload',
-                            template: 'Bild upload fehlgeschlagen!',
-                            okText: 'Ok'
-                        });
+                        toastr.error("Bild upload fehlgeschlagen!")
                     } else {
                         var intervalHandle = Meteor.setInterval(function () {
                             console.log("Inside interval");
@@ -33,11 +29,7 @@ Template.profile.events({
                                     "profile.image": Meteor.absoluteUrl() + "/cfs/files/images/" + fileObj._id
                                 };
                                 Meteor.users.update(Meteor.userId(), {$set: imagesURL});
-                                IonPopup.alert({
-                                    title: 'Bild upload',
-                                    template: 'Bild upload erfolgreich!',
-                                    okText: 'Ok'
-                                });
+                                toastr.error("Bild upload eroflgreich!")
                                 // file has stored, close out interval
                                 Meteor.clearInterval(intervalHandle);
                             }
