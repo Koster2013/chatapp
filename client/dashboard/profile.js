@@ -35,7 +35,7 @@ Template.profile.events({
                             if (fileObj.hasStored("images")) {
                                 // File has been uploaded and stored. Can safely display it on the page.
                                 var imagesURL = {
-                                    "profile.image": Meteor.absoluteUrl() + "/cfs/files/images/" + fileObj._id
+                                    "profile.image": Meteor.absoluteUrl() + "cfs/files/images/" + fileObj._id
                                 };
                                 Meteor.users.update(Meteor.userId(), {$set: imagesURL});
                                 Session.set("showSpinner", false);
