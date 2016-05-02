@@ -167,3 +167,7 @@ _onDeviceReady = function () {
         }
     })
 }
+
+_isNumeric = function (n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}

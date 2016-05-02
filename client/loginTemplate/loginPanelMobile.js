@@ -19,7 +19,7 @@ if (Meteor.isCordova) {
             cordova.plugins.barcodeScanner.scan(
                 function (result) {
                     var table = result.text;
-                    if (table == "" || table == undefined || table > 50) {
+                    if (table == "" || table == undefined || table > 50 || !_isNumeric(table)) {
                         toastr.error('Fehlerhafter Barcode, das ist kein gültiger Tischcode!');
                         return false;
                     } else {
