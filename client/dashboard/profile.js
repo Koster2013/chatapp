@@ -9,16 +9,25 @@ Template.profile.helpers({
     },
     thatsMe: function () {
         return _thatsMe(this.username);
+    },
+    showSpinner: function () {
+        return Session.get("showSpinner");
     }
 });
+
+Template.dashboard.rendered = function () {
+    Session.set("showSpinner", false);
+};
 
 Template.profile.events({
     'change #myFileInput': function (event, template) {
         FS.Utility.eachFile(event, function (file) {
+            Session.set("showSpinner", true);
             console.log(file.size)
             if(file.size < 4000000){
                 Images.insert(file, function (err, fileObj) {
                     if (err) {
+                        Session.set("showSpinner", false);
                         toastr.error("Bild upload fehlgeschlagen!")
                     } else {
                         var intervalHandle = Meteor.setInterval(function () {
@@ -29,6 +38,7 @@ Template.profile.events({
                                     "profile.image": Meteor.absoluteUrl() + "/cfs/files/images/" + fileObj._id
                                 };
                                 Meteor.users.update(Meteor.userId(), {$set: imagesURL});
+                                Session.set("showSpinner", false);
                                 toastr.error("Bild upload eroflgreich!")
                                 // file has stored, close out interval
                                 Meteor.clearInterval(intervalHandle);
