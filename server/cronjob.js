@@ -1,7 +1,7 @@
 SyncedCron.add({
     name: 'Remove all User Messages und private chats',
     schedule: function (parser) {
-        return parser.text('every 60 mins');
+        return parser.text('every 59 mins');
     },
     job: function () {
         console.log("remove all Messages");
