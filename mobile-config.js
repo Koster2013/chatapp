@@ -8,17 +8,25 @@ App.info({
 });
 
 App.icons({
-  // iOS
-  'iphone': 'res/icons/hdpi/ic_launcher.png',
-  'iphone_2x': 'res/icons/xhdpi/ic_launcher.png',
-  'iphone_3x': 'res/icons/xxhdpi/ic_launcher.png',
 
+/*  iphone_2x	120x120
+      iphone_3x	180x180
+  ipad	76x76
+      ipad_2x	152x152
+  android_ldpi	36x36
+      android_mdpi	48x48
+  android_hdpi	72x72
+      android_xhdpi	96x96*/
+  // iOS
+  'iphone_2x': 'res/icons/Icon-120.png',
+  'iphone_3x': 'res/icons/Icon-60@3x.png',
+  'ipad': 'res/icons/Icon-76.png',
+  'ipad_2x': 'res/icons/Icon-76@2x.png',
 
   // Android
-  'android_ldpi': 'res/icons/mdpi/ic_launcher.png',
-  'android_mdpi': 'res/icons/mdpi/ic_launcher.png',
-  'android_hdpi': 'res/icons/hdpi/ic_launcher.png',
-  'android_xhdpi': 'res/icons/xhdpi/ic_launcher.png'
+  'android_mdpi': 'res/icons/Icon-ldpi.png',
+  'android_hdpi': 'res/icons/Icon-hdpi.png',
+  'android_xhdpi': 'res/icons/Icon-xhdpi.png'
 });
 
 App.launchScreens({
