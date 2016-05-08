@@ -27,6 +27,9 @@ Template.rooms.helpers({
     },
     onIgnore: function () {
         var ignoreUserList = Meteor.users.findOne({_id: Meteor.user()._id}).profile.ignoreList;
+        if (this.roomname =="mainroom") {
+            return false;
+        }
         if ($.inArray(this.users[0].username, ignoreUserList) >= 0) {
             return true;
         }

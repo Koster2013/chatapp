@@ -1,6 +1,26 @@
 if (Meteor.isServer) {
 
     Meteor.startup(function () {
+
+
+/*        BrowserPolicy.content.allowSameOriginForAll();
+        BrowserPolicy.content.allowDataUrlForAll();
+        BrowserPolicy.content.allowOriginForAll("*");*/
+
+        WebApp.rawConnectHandlers.use(function(req, res, next) {
+            res.setHeader("Access-Control-Allow-Origin", "*");
+            return next();
+        });
+
+        console.log('Configuring content-security-policy:');
+        BrowserPolicy.content.allowSameOriginForAll();
+        BrowserPolicy.content.allowOriginForAll('http://meteor.local1');
+        BrowserPolicy.content.allowOriginForAll('https://yourapp.io');
+        BrowserPolicy.content.allowOriginForAll('https://*.yourapp.io');
+        BrowserPolicy.content.allowOriginForAll('https://*.stripe.com');
+        BrowserPolicy.content.allowEval();
+        BrowserPolicy.framing.disallow();
+
         SyncedCron.start();
         if (Rooms.findOne({roomname: "mainroom"}) == undefined) {
             Location.insert({locationname: "erdem", wlanssid: "EasyBox-0B6B28"});
