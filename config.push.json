@@ -1,9 +1,15 @@
 {
+  "apn-dev": {
+    "passphrase": "sysadm",
+    "key": "PushChatKey.pem",
+    "cert": "lomachat.pem"
+  },
+
   "gcm": {
     "apiKey": "AIzaSyA45-5x4iw15x5-CT4kspl6QSjJbYfKRUc",
     "projectNumber": 462447849451
   },
-  "production": false,
+  "production": true,
   "badge": true,
   "sound": true,
   "alert": true,
