@@ -11,8 +11,8 @@ App.icons({
   // iOS
   'iphone': 'res/icons/hdpi/ic_launcher.png',
   'iphone_2x': 'res/icons/xhdpi/ic_launcher.png',
-  'ipad': 'res/icons/xhdpi/ic_launcher.png',
-  'ipad_2x': 'res/icons/xxhdpi/ic_launcher.png',
+  'iphone_3x': 'res/icons/xxhdpi/ic_launcher.png',
+
 
   // Android
   'android_ldpi': 'res/icons/mdpi/ic_launcher.png',
@@ -23,13 +23,18 @@ App.icons({
 
 App.launchScreens({
   // iOS
+/*  iphone_2x	640x960
+      iphone5	640x1136
+  iphone6	750x1334
+      iphone6p_portrait	1242x2208
+  iphone6p_landscape	2208x1242*/
   'iphone': 'res/splash/mdpi/background.png',
   'iphone_2x': 'res/splash/hdpi/background.png',
   'iphone5': 'res/splash/hdpi/background.png',
-  'ipad_portrait': 'res/splash/xhdpi/background.png',
-  'ipad_portrait_2x': 'res/splash/xhdpi/background.png',
-  'ipad_landscape': 'res/splash/xxhdpi/background.png',
-  'ipad_landscape_2x': 'res/splash/xxhdpi/background.png',
+  'iphone6': 'res/splash/xhdpi/background.png',
+  'iphone6p_portrait': 'res/splash/xxhdpi/background.png',
+  'iphone6p_landscape': 'res/splash/xxxhdpi/background.png',
+
 
   // Android
   'android_ldpi_portrait': 'res/splash/mdpi/background.png',
