@@ -15,6 +15,9 @@ if (Meteor.isCordova) {
             //IonPopup.alert({title: notification.payload.title, template: notification.message});
         });
 
+        //IONIC IOS Keyboard Scroll Bugfix
+        cordova.plugins.Keyboard.disableScroll(false);
+
         //Fix Back Button
         document.addEventListener("deviceready", onDeviceReady, false);
 
