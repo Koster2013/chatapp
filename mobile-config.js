@@ -8,25 +8,40 @@ App.info({
 });
 
 App.icons({
-
-/*  iphone_2x	120x120
-      iphone_3x	180x180
-  ipad	76x76
-      ipad_2x	152x152
-  android_ldpi	36x36
-      android_mdpi	48x48
-  android_hdpi	72x72
-      android_xhdpi	96x96*/
+  /*
+/iphone_2x (120x120)
+iphone_3x (180x180)
+ipad (76x76)
+ipad_2x (152x152)
+ipad_pro (167x167)
+ios_settings (29x29)
+ios_settings_2x (58x58)
+ios_settings_3x (87x87)
+ios_spotlight (40x40)
+ios_spotlight_2x (80x80)
+android_mdpi (48x48)
+android_hdpi (72x72)
+android_xhdpi (96x96)
+android_xxhdpi (144x144)
+android_xxxhdpi (192x192)
+*/
   // iOS
   'iphone_2x': 'res/icons/Icon-120.png',
   'iphone_3x': 'res/icons/Icon-60@3x.png',
   'ipad': 'res/icons/Icon-76.png',
   'ipad_2x': 'res/icons/Icon-76@2x.png',
+  'ios_settings': 'res/icons/Icon-Small.png',
+  'ios_settings_2x': 'res/icons/Icon-Small@2x.png',
+  'ios_settings_3x': 'res/icons/Icon-Small@3x.png',
+  'ios_spotlight': 'res/icons/Icon-Small-40.png',
+  'ios_spotlight_2x': 'res/icons/Icon-Small-40@2x.png',
 
   // Android
-  'android_mdpi': 'res/icons/Icon-ldpi.png',
+  'android_mdpi': 'res/icons/Icon-mdpi.png',
   'android_hdpi': 'res/icons/Icon-hdpi.png',
-  'android_xhdpi': 'res/icons/Icon-xhdpi.png'
+  'android_xhdpi': 'res/icons/Icon-xhdpi.png',
+  'android_xxhdpi': 'res/icons/Icon-xxhdpi.png',
+  'android_xxxhdpi': 'res/icons/Icon-xxxhdpi.png'
 });
 
 App.launchScreens({
@@ -36,7 +51,6 @@ App.launchScreens({
   iphone6	750x1334
       iphone6p_portrait	1242x2208
   iphone6p_landscape	2208x1242*/
-  'iphone': 'res/splash/mdpi/background.png',
   'iphone_2x': 'res/splash/hdpi/background.png',
   'iphone5': 'res/splash/hdpi/background.png',
   'iphone6': 'res/splash/xhdpi/background.png',
@@ -45,8 +59,6 @@ App.launchScreens({
 
 
   // Android
-  'android_ldpi_portrait': 'res/splash/mdpi/background.png',
-  'android_ldpi_landscape': 'res/splash/mdpi/background.png',
   'android_mdpi_portrait': 'res/splash/mdpi/background.png',
   'android_mdpi_landscape': 'res/splash/mdpi/background.png',
   'android_hdpi_portrait': 'res/splash/hdpi/background.png',
