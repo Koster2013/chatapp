@@ -2,10 +2,6 @@ if (Meteor.isCordova) {
     Meteor.startup(function () {
 
 
-        BrowserPolicy.content.allowSameOriginForAll();
-        BrowserPolicy.content.allowDataUrlForAll();
-        BrowserPolicy.content.allowOriginForAll("*");
-
         Push.addListener('message', function (notification) {
             // Called on every message
             function alertDismissed() {
