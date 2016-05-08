@@ -64,12 +64,13 @@ App.launchScreens({
      android_xhdpi_landscape (960x720)
      android_xxhdpi_portrait (1080x1440)
      android_xxhdpi_landscape (1440x1080)
-     */
+
     'iphone_2x': 'res/splash/ios/Default@2x.png',
     'iphone5': 'res/splash/ios/Default-568@2x.png',
     'iphone6': 'res/splash/ios/Default-Portrait.png',
     'iphone6p_portrait': 'res/splash/ios/Default-Portrait.png',
     'iphone6p_landscape': 'res/splash/ios/Default-Landscape.png',
+     */
 
 
     // Android
