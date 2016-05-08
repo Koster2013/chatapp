@@ -10,6 +10,9 @@
 
             <div class="list card" style="text-align: center;">
 
+                {{#if showSpinner }}
+                    {{> spinner}}
+                {{/if}}
                 <div class="item ">
                     <h2> {{profile.profilename}}</h2>
                 </div>
@@ -23,7 +26,7 @@
                         <!--<input type="file" id="myFileInput">-->
                         {{#if isIOS}}
 
-                            <input type="file" id="myFileInput" accept="image/*" />
+                            <input type="file" id="myFileInput" accept="image/*"/>
 
                         {{else}}
 
@@ -31,7 +34,9 @@
 
                             <div id="myFileDiv" onclick="$('#myFileInput').click();">
 
-                                <button class="button button-positive  icon ion-ios-upload" style="width:100%;"> Bild hochladen</button>
+                                <button class="button button-positive  icon ion-ios-upload" style="width:100%;"> Bild
+                                    hochladen
+                                </button>
                             </div>
 
                         {{/if}}
@@ -39,6 +44,7 @@
                         <div></div>
                     {{/if}}
                 </div>
+
 
             </div>
         </div>

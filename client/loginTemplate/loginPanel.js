@@ -20,6 +20,10 @@ if (!Meteor.isCordova) {
                 return false;
             }
 
+            if (!_isNumeric(table)) {
+                toastr.error("Tisch muss eine gültige Nummer sein!");
+                return false;
+            }
             Meteor.subscribe("location").readyPromise().then(function (result) {
                 var currentLocation = Location.find({}).fetch();
                 currentLocation.forEach(function (key) {

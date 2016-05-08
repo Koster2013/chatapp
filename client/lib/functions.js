@@ -163,11 +163,11 @@ _onDeviceReady = function () {
                 successFullConnected.innerHTML = 'Verbunden';
             }
         } else {
-            IonPopup.alert({
-                title: "Wlan Benachrichtigung!",
-                template: "Die Anwendung funktioniert nur im lokal WLAN",
-                okText: "Ok"
-            });
+            toastr.warn("Die Anwendung funktioniert nur im lokalen Wlan");
         }
     })
+}
+
+_isNumeric = function (n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
 }
