@@ -77,6 +77,6 @@ if (Meteor.isCordova) {
     });
 }
 
-Template.messages.rendered = function () {
+Template.messages.onRendered = function () {
     IonSideMenu.snapper.settings({disable: 'left'});
 };

@@ -15,7 +15,7 @@ Template.profile.helpers({
     }
 });
 
-Template.dashboard.rendered = function () {
+Template.dashboard.onRendered = function () {
     Session.set("showSpinner", false);
 };
 
