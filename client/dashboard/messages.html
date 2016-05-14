@@ -9,6 +9,21 @@
                     {{> users }}
                 </div>
             {{/ionSideMenu}}
+
+            {{#ionSideMenu side="left"}}
+                <div class="bar bar-header bar-positive">
+                    <h1 class="title">Einstellungen</h1>
+                </div>
+                <div class="content has-header">
+                    <div class="list">
+                        <a class="item item-icon-left" href="/signout">
+                            <i class="icon ion-log-out"></i>
+                            Ausloggen
+                        </a>
+                    </div>
+                </div>
+            {{/ionSideMenu}}
+
             {{#ionSideMenuContent}}
                 <div class="bar bar-header bar-positive" style="position: fixed; overflow-y: hidden">
                     <a class="button button-positive icon ion-arrow-left-b header-button" href="/dashboard"></a>
