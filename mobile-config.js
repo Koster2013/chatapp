@@ -79,7 +79,15 @@ App.launchScreens({
     'android_hdpi_portrait': 'res/splash/android/hdpi/background.png',
     'android_hdpi_landscape': 'res/splash/android/hdpi/background.png',
     'android_xhdpi_portrait': 'res/splash/android/xxxhdpi/background.png',
-    'android_xhdpi_landscape': 'res/splash/android/xxxhdpi/background.png'
+    'android_xhdpi_landscape': 'res/splash/android/xxxhdpi/background.png',
+
+    //IPhone
+    'iphone_2x': 'res/splash/ios/Default@2x.png',
+    'iphone5': 'res/splash/ios/Default-568h@2x.png',
+    'iphone6': 'res/splash/ios/Default-Portrait.png',
+    'iphone6p_portrait': 'res/splash/ios/Default-Portrait@2x.png',
+    'iphone6p_landscape': 'res/splash/ios/Default-Landscape-1536h.png'
+
 });
 
 App.setPreference('StatusBarOverlaysWebView', 'false');
