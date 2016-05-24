@@ -1,4 +1,5 @@
 if (Meteor.isServer) {
+    Push.debug=true;
 
     Meteor.startup(function () {
         SyncedCron.start();
