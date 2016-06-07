@@ -3,6 +3,10 @@
  */
 if (Meteor.isCordova) {
 
+  Template.loginPanel.onRendered = function () {
+    Session.setDefault("clickLomaImage", 0);
+  };
+
     Template.loginPanel.events({
         'submit #createForm': function (e) {
             var profileUsername = e.target.username.value;
@@ -35,7 +39,14 @@ if (Meteor.isCordova) {
                 }
             );
             return false;
+        },
+
+        'click #lomaImage': function (e) {
+          var counter = Session.get("clickLomaImage") + 1;
+          Session.set("clickLomaImage", counter);
         }
+
+
     });
 
     Template.loginPanel.helpers({
@@ -47,6 +58,15 @@ if (Meteor.isCordova) {
             } else {
                 return "disabled";
             }
-        }
+        },
+        'appStoreMode': function (e) {
+            console.log(Session.get("clickLomaImage"))
+            if (Session.get("clickLomaImage") >= 10) {
+                return "display: block;";
+            } else {
+                return "display: none;";
+            }
+        },
+
     });
 }

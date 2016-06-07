@@ -8,7 +8,7 @@
 
                         <div class="list list-inset" style="margin-top: 0px;">
                             <div style="text-align: center;padding-bottom: 10px;">
-                                <img class="full-image chat-images" src="/sayhello.png">
+                                <img class="full-image chat-images" src="/sayhello.png" id="lomaImage">
                             </div>
 
                             <label class="item item-input">
@@ -37,19 +37,19 @@
                             {{/unless}}
 
                             {{#if isCordova }}
-
                                 <div class="padding">
                                     <button type="submit"
                                             class="button button-block button-positive activated"  {{wlanConnected}}  >
                                         Barcode scan
                                     </button>
+                                    <button type="submit"
+                                            class="button button-block button-assertive activated" style={{appStoreMode}}  >
+                                          AppStore Mode
+                                    </button>
                                     <div id="textDiv" style="text-align: center; margin-top: 25px">
                                         <span id="successFullConnected" class="assertive">
                                             Nicht Verbunden</span>
                                     </div>
-                                    <!--<a style="visibility: hidden" class="button button-block button-positive activated"-->
-                                    <!--id="checkWlan">Check Wlan-->
-                                    <!--</a>-->
                                 </div>
                             {{/if}}
                         </div>
