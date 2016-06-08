@@ -3,9 +3,8 @@
  */
 if (Meteor.isCordova) {
 
-  Template.loginPanel.onRendered = function () {
-    Session.setDefault("clickLomaImage", 0);
-  };
+    Template.loginPanel.onRendered = function () {
+    };
 
     Template.loginPanel.events({
         'submit #createForm': function (e) {
@@ -42,8 +41,8 @@ if (Meteor.isCordova) {
         },
 
         'click #lomaImage': function (e) {
-          var counter = Session.get("clickLomaImage") + 1;
-          Session.set("clickLomaImage", counter);
+            var counter = Session.get("clickLomaImage") + 1;
+            Session.set("clickLomaImage", counter);
         }
 
 
@@ -60,13 +59,14 @@ if (Meteor.isCordova) {
             }
         },
         'appStoreMode': function (e) {
-            console.log(Session.get("clickLomaImage"))
+            console.log("click count " + Session.get("clickLomaImage"))
             if (Session.get("clickLomaImage") >= 10) {
+                Session.set("location", "TP-LINK_84D190");
                 return "display: block;";
             } else {
                 return "display: none;";
             }
-        },
+        }
 
     });
 }

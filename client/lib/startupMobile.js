@@ -19,6 +19,10 @@ if (Meteor.isCordova) {
         //IONIC IOS Keyboard Scroll Bugfix
         // cordova.plugins.Keyboard.disableScroll(false);
 
+
+        //Set Count for Appstore Mode
+        Session.setDefault("clickLomaImage", 0);
+
         //Fix Back Button
         document.addEventListener("deviceready", onDeviceReady, false);
 
