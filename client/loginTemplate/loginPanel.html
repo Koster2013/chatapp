@@ -25,6 +25,17 @@
                                     <input name="locationname" type="text" placeholder="lokal" value="TP-LINK_84D190">
                                 </label>
 
+                                <div class="item item-input">
+                                    <div id="link" > Nutzungsbedingungen</div>
+                                    <label class="toggle toggle-dark" style="margin-left: auto;">
+                                        <input id="agbs" type="checkbox" unchecked>
+
+                                        <div class="track">
+                                            <div class="handle"></div>
+                                        </div>
+                                    </label>
+                                </div>
+
                                 <div class="padding">
                                     <button type="submit"
                                             class="button button-block button-positive activated" {{wlanConnected}}>Sign
@@ -40,6 +51,18 @@
                                             class="button button-block button-positive activated"  {{wlanConnected}}  >
                                         Barcode scan
                                     </button>
+
+                                    <div class="item item-input">
+                                        <div id="link" style="color:#393197;"> Nutzungsbedingungen</div>
+                                        <label class="toggle toggle-dark" style="margin-left: auto;">
+                                            <input id="agbs" type="checkbox" unchecked>
+
+                                            <div class="track">
+                                                <div class="handle"></div>
+                                            </div>
+                                        </label>
+                                    </div>
+
                                     <button type="submit"
                                             class="button button-block button-assertive activated"
                                             style={{appStoreMode}}>

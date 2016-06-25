@@ -15,6 +15,10 @@ if (!Meteor.isCordova) {
             var location = e.target.locationname.value;
             var username = new Meteor.Collection.ObjectID().valueOf();
 
+            if (Session.get("agbs") == false) {
+                toastr.error("Nutzungsbedingungen müssen akzeptiert werden!");
+                return false;
+            }
             if (profileUsername.length < 3) {
                 toastr.error("Benutzername darf nicht kleiner als 3 Zeichen sein");
                 return false;
@@ -35,6 +39,13 @@ if (!Meteor.isCordova) {
                 });
             })
             return false;
+        },
+        'click #link': function (event) {
+            Router.go("/agbs");
+        },
+        'click #agbs': function (event) {
+            console.log($(event.target).is(':checked'))
+            Session.set("agbs", $(event.target).is(':checked'));
         }
     });
 }

@@ -14,6 +14,11 @@ if (Meteor.isCordova) {
 
             e.target.username.value = "";
 
+
+            if (Session.get("agbs") == false){
+                toastr.error("Nutzungsbedingungen müssen akzeptiert werden!");
+                return false;
+            }
             if (profileUsername.length < 3) {
                 toastr.error("Benutzername darf nicht kleiner als 3 Zeichen sein!");
                 return false;
@@ -43,9 +48,14 @@ if (Meteor.isCordova) {
         'click #lomaImage': function (e) {
             var counter = Session.get("clickLomaImage") + 1;
             Session.set("clickLomaImage", counter);
+        },
+        'click #agbs': function (event) {
+            console.log($(event.target).is(':checked'))
+            Session.set("agbs", $(event.target).is(':checked') );
+        },
+        'click #link': function (event) {
+            Router.go("/agbs");
         }
-
-
     });
 
     Template.loginPanel.helpers({
