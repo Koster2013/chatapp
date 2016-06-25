@@ -37,6 +37,7 @@
                 <div style="padding-top: 40px;" id="messages1">
                     <ul class="commentArea">
                         {{#each messages}}
+
                             <li class={{thatsMe}}>
                                 <strong>{{username}} </strong>
                                 -
@@ -45,8 +46,9 @@
                                 (
                                 <small> Tisch: {{table}} </small>
                                 )
-                                <p>{{msg}}</p>
+                                <p id="messageContent">{{msg}}</p>
                             </li>
+                            {{filterbadwords}}
                         {{/each}}
                     </ul>
                 </div>
@@ -66,4 +68,6 @@
             {{/ionSideMenuContent}}
         {{/ionSideMenuContainer}}
     {{/ionBody}}
+
+
 </template>

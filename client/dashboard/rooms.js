@@ -61,3 +61,8 @@ Template.rooms.helpers({
     }
 });
 
+Template.rooms.onRendered(function() {
+    $(document).profanityFilter({
+        externalSwears: '/badword.json'
+    });
+});

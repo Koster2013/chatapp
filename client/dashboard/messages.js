@@ -38,8 +38,12 @@ Template.messages.helpers({
     },
    connectedWlan: function () {
         return Session.get("wlanConnected") ? "color: green !important;"  : "color: red !important;" ;
+    },
+    filterbadwords: function() {
+        $(document).profanityFilter({
+            externalSwears: '/badword.json'
+        });
     }
-
 });
 
 if (!Meteor.isCordova) {
