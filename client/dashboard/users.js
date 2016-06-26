@@ -63,12 +63,15 @@ Template.users.events({
         var ignoreUser = Meteor.users.findOne({_id: Meteor.user()._id}).profile.ignoreList;
         if ($.inArray(this.username, ignoreUser) >= 0) {
             //remove from Ignore List
-            Meteor.call("removeIgnoreUser", Meteor.user() , this.username);
+            Meteor.call("removeIgnoreUser", Meteor.user(), this.username);
             return;
         } else {
-            Meteor.call("addIgnoreUser", Meteor.user() , this.username);
+            Meteor.call("addIgnoreUser", Meteor.user(), this.username);
             return;
         }
+    },
+    'click #meldeUser': function (e) {
+        Meldeuser.insert({_id: this.username});
     },
     "change #tablePicker": function (evt) {
         var newValue = $(evt.target).val();
