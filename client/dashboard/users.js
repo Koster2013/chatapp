@@ -59,7 +59,8 @@ Template.users.events({
             Router.go('/dashboard/' + result);
         });
     },
-    'click #ignoreUser': function (e) {
+    'click #meldeUser': function (e) {
+        Meldeuser.insert({_id: this.username});
         var ignoreUser = Meteor.users.findOne({_id: Meteor.user()._id}).profile.ignoreList;
         if ($.inArray(this.username, ignoreUser) >= 0) {
             //remove from Ignore List
@@ -69,9 +70,6 @@ Template.users.events({
             Meteor.call("addIgnoreUser", Meteor.user(), this.username);
             return;
         }
-    },
-    'click #meldeUser': function (e) {
-        Meldeuser.insert({_id: this.username});
     },
     "change #tablePicker": function (evt) {
         var newValue = $(evt.target).val();
