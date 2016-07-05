@@ -62,7 +62,7 @@ button{
 .commentArea {
   font: 14px Arial;
   padding: 0 10px;
-  margin-top: 20px;
+  margin: 13px 0 0 0;
 }
 
 .bubbledLeft, .bubbledRight {
@@ -85,12 +85,19 @@ button{
   color: #ffffff;
 }
 
+ul {
+  transform: rotate(180deg);
+}
+ul > li {
+  transform: rotate(-180deg);
+}
+
 .bubbledLeft:before {
   border-bottom: 10px solid $secondary-color;
-  border-left: 9px solid rgba(0, 0, 0, 0);
+  border-right: 15px solid rgba(0, 0, 0, 0);
   position: absolute;
   bottom: 0;
-  left: -8px;
+  right: -8px;
   content: "";
 }
 
@@ -109,10 +116,10 @@ button{
 
 .bubbledRight:before {
   border-bottom: 9px solid $primary-color;
-  border-right: 9px solid rgba(0, 0, 0, 0);
+  border-left: 15px solid rgba(0, 0, 0, 0);
   position: absolute;
   bottom: 0;
-  right: -8px;
+  left: -8px;
   content: "";
 }
 
