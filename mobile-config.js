@@ -4,7 +4,7 @@ App.info({
     author: 'Erdem Guengoer and Marc Koster',
     email: 'erdemguengoer@googlemail.com',
     website: 'http://www.google.de',
-    version: '1.0'
+    version: '1.41'
 });
 
 App.icons({
