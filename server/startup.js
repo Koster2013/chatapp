@@ -10,10 +10,12 @@ if (Meteor.isServer) {
             Rooms.insert({roomname: "mainroom", location: "EasyBox-895487"});
             Location.insert({locationname: "koster", wlanssid: "TP-LINK_84D190"});
             Rooms.insert({roomname: "mainroom", location: "TP-LINK_84D190"});
-            Location.insert({locationname: "freewifi", wlanssid: "airfy free WiFi"});
-            Rooms.insert({roomname: "mainroom", location: "airfy free WiFi"});
             Location.insert({locationname: "scheer", wlanssid: "ScheerTower"});
             Rooms.insert({roomname: "mainroom", location: "ScheerTower"});
+            Location.insert({locationname: "BABOS", wlanssid: "BABOS"});
+            Rooms.insert({roomname: "mainroom", location: "BABOS"});
+            Location.insert({locationname: "LoMa", wlanssid: "LoMa Chat Medusa"});
+            Rooms.insert({roomname: "mainroom", location: "LoMa Chat Medusa"});
         }
     });
 

@@ -16,6 +16,10 @@ if (Meteor.isServer) {                                                 // 1
             Rooms.insert({roomname: "mainroom", location: "EasyBox-895487"});
             Location.insert({ locationname: "koster", wlanssid: "TP-LINK_84D190" });
             Rooms.insert({ roomname: "mainroom", location: "TP-LINK_84D190" });
+            Location.insert({locationname: "scheer", wlanssid: "BABOS"});
+            Rooms.insert({roomname: "mainroom", location: "BABOS"});
+            Location.insert({locationname: "scheer", wlanssid: "LoMa Chat Medusa"});
+            Rooms.insert({roomname: "mainroom", location: "LoMa Chat Medusa"});
         } else {}                                                      //
         //Messages.remove({});                                         //
         //Rooms.remove({});                                            //
